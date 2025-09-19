@@ -1,0 +1,53 @@
+<!-- templates/question_detail.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ question.title }}</title>
+  <style>
+    .reply-box { display: none; margin-top: 10px; }
+    .reply { margin: 10px 0; border-bottom: 1px solid #ddd; padding: 8px; }
+  </style>
+</head>
+<body>
+
+<h2>{{ question.title }}</h2>
+<p>{{ question.body }}</p>
+<p><i>Posted by {{ question.author.username }} at {{ question.created_at }}</i></p>
+
+<hr>
+
+<h3>Replies</h3>
+
+{% for reply in replies %}
+  <div class="reply">
+    <strong>{{ reply.author.username }}</strong>: {{ reply.body }}
+    <small>at {{ reply.created_at }}</small>
+  </div>
+{% empty %}
+  <p>No replies yet. Be the first to reply!</p>
+{% endfor %}
+
+<hr>
+
+<!-- Toggle button -->
+<button onclick="toggleReplyBox()">Reply</button>
+
+<!-- Reply form -->
+<div id="reply-box" class="reply-box">
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Reply</button>
+  </form>
+</div>
+
+<script>
+  function toggleReplyBox() {
+    const box = document.getElementById("reply-box");
+    box.style.display = (box.style.display === "none" || box.style.display === "") ? "block" : "none";
+  }
+</script>
+
+</body>
+</html>

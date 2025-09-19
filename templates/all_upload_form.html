@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Management - EduReddit</title>
+  <style>
+    @import url(https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap);
+    @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined);
+    @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css);
+    
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-inter">
+  <div id="webcrumbs">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <span class="text-2xl font-bold text-primary-600">EduReddit</span>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+            <a href="/profile" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Profile</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <div class="px-4 py-6 sm:px-0">
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+          <div class="flex flex-col md:flex-row">
+            <!-- Sidebar Navigation -->
+            <div class="bg-gray-50 md:w-64 lg:w-80 flex-shrink-0 border-r border-gray-200">
+              <div class="p-6 sticky top-0">
+                <h2 class="text-xl font-semibold text-gray-900 mb-6">Create Content</h2>
+                <nav class="space-y-1">
+                  <button id="projectTab" class="w-full text-left px-4 py-3 rounded-lg bg-primary-50 text-primary-700 font-medium flex items-center transition-all hover:bg-primary-100">
+                    <span class="material-symbols-outlined mr-3">videocam</span> Project
+                  </button>
+                  <button id="postTab" class="w-full text-left px-4 py-3 rounded-lg text-gray-700 font-medium flex items-center transition-all hover:bg-gray-100">
+                    <span class="material-symbols-outlined mr-3">article</span> Post
+                  </button>
+                  <button id="questionTab" class="w-full text-left px-4 py-3 rounded-lg text-gray-700 font-medium flex items-center transition-all hover:bg-gray-100">
+                    <span class="material-symbols-outlined mr-3">help</span> Question
+                  </button>
+                </nav>
+              </div>
+            </div>
+
+            <!-- Form Content -->
+            <div class="flex-1 p-6 md:p-8">
+              <!-- Project Form -->
+              <form id="projectForm" method="POST" action="add_project" enctype="multipart/form-data" class="space-y-6 animate-fadeIn">
+                {% csrf_token %}
+                <div class="mb-6">
+                  <h1 class="text-2xl font-bold text-gray-900">Share Your Project</h1>
+                  <p class="text-gray-600 mt-2">Upload and share your amazing projects with the community</p>
+                </div>
+
+                <div>
+                  <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Project Title</label>
+                  <input type="text" id="title" name="title" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" placeholder="Give your project a descriptive title" required>
+                </div>
+
+                <div>
+                  <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Project Description</label>
+                  <textarea id="description" name="description" rows="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" placeholder="Describe your project in detail... What did you build? What technologies did you use? What challenges did you overcome?" required></textarea>
+                  <div class="flex justify-between mt-1.5">
+                    <span class="text-xs text-gray-500">Markdown formatting supported</span>
+                    <span class="text-xs text-gray-500">0/10000</span>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="tags" class="block text-sm font-medium text-gray-700 mb-2">Tags (optional)</label>
+                  <input type="text" id="tags" name="tags" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" placeholder="e.g., javascript, react, webdev (comma separated)">
+                </div>
+
+                <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-primary-500 transition-colors">
+                  <div class="space-y-2">
+                    <span class="material-symbols-outlined text-5xl text-gray-400">videocam</span>
+                    <h3 class="font-medium">Upload Project Video</h3>
+                    <p class="text-sm text-gray-500">Drag and drop your video file here, or click to browse</p>
+                    <p class="text-xs text-gray-500">MP4, MOV or WEBM (max. 500MB)</p>
+                    <input type="file" id="video-upload" name="video" class="hidden" accept="video/mp4,video/quicktime,video/webm">
+                    <button type="button" onclick="document.getElementById('video-upload').click()" class="mt-2 inline-block py-2 px-4 bg-primary-100 text-primary-700 rounded-full text-sm font-medium hover:bg-primary-200 transition-colors">
+                      Select Video
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Thumbnail (optional)</label>
+                  <div class="bg-gray-50 border border-gray-300 rounded-lg p-4 text-center hover:border-primary-500 transition-colors">
+                    <div class="space-y-1">
+                      <span class="material-symbols-outlined text-3xl text-gray-400">image</span>
+                      <p class="text-xs text-gray-500">JPG, PNG or GIF (max. 5MB)</p>
+                      <input type="file" id="thumbnail-upload" name="thumbnail" class="hidden" accept="image/*">
+                      <button type="button" onclick="document.getElementById('thumbnail-upload').click()" class="mt-1 inline-block py-1 px-3 bg-gray-200 text-gray-700 rounded-full text-xs font-medium hover:bg-gray-300 transition-colors">
+                        Select Image
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Privacy</label>
+                  <div class="space-y-2">
+                    <div class="flex items-center">
+                      <input type="radio" id="public" name="privacy" value="public" class="mr-2 h-4 w-4 text-primary-600 focus:ring-primary-500" checked>
+                      <label for="public" class="text-sm">Public - Anyone can see this project</label>
+                    </div>
+                    <div class="flex items-center">
+                      <input type="radio" id="unlisted" name="privacy" value="unlisted" class="mr-2 h-4 w-4 text-primary-600 focus:ring-primary-500">
+                      <label for="unlisted" class="text-sm">Unlisted - Only people with the link can see this project</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex justify-end space-x-3 pt-6 border-t border-gray-200">
+                  <button type="button" class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                    Save as Draft
+                  </button>
+                  <button type="submit" class="px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors flex items-center">
+                    <span>Post Project</span>
+                    <span class="material-symbols-outlined ml-1 text-sm">arrow_forward</span>
+                  </button>
+                </div>
+              </form>
+
+              <!-- Question Form -->
+              <form id="questionForm" method="POST" action="add_question" class="space-y-6 animate-fadeIn hidden">
+                {% csrf_token %}
+                <div class="mb-6">
+                  <h1 class="text-2xl font-bold text-gray-900">Ask a Question</h1>
+                  <p class="text-gray-600 mt-2">Get help and share knowledge with the community</p>
+                </div>
+
+                <div>
+                  <label for="questionTitle" class="block text-sm font-medium text-gray-700 mb-2">Question Title</label>
+                  <input type="text" id="questionTitle" name="title" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" placeholder="What's your question?" required>
+                </div>
+
+                <div>
+                  <label for="questionBody" class="block text-sm font-medium text-gray-700 mb-2">Question Details</label>
+                  <textarea id="questionBody" name="body" rows="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" placeholder="Provide details about your question. What have you tried? What specific help do you need?" required></textarea>
+                </div>
+
+                <div class="flex justify-end space-x-3 pt-6 border-t border-gray-200">
+                  <button type="button" class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                    Cancel
+                  </button>
+                  <button type="submit" class="px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors">
+                    Submit Question
+                  </button>
+                </div>
+              </form>
+
+              <!-- Post Form -->
+              <form id="postForm" method="POST" action="add_post" enctype="multipart/form-data" class="space-y-6 animate-fadeIn hidden">
+                {% csrf_token %}
+                <div class="mb-6">
+                  <h1 class="text-2xl font-bold text-gray-900">Create a Post</h1>
+                  <p class="text-gray-600 mt-2">Share your thoughts and ideas with the community</p>
+                </div>
+
+                <div>
+                  <label for="postTitle" class="block text-sm font-medium text-gray-700 mb-2">Post Title</label>
+                  <input type="text" id="postTitle" name="title" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" placeholder="Give your post a descriptive title" required>
+                </div>
+
+                <div>
+                  <label for="postDescription" class="block text-sm font-medium text-gray-700 mb-2">Post Content</label>
+                  <textarea id="postDescription" name="description" rows="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" placeholder="Share your thoughts, ideas, or experiences with the community..." required></textarea>
+                  <div class="flex justify-between mt-1.5">
+                    <span class="text-xs text-gray-500">Markdown formatting supported</span>
+                    <span class="text-xs text-gray-500">0/5000</span>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Post Image (optional)</label>
+                  <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-primary-500 transition-colors">
+                    <div class="space-y-2">
+                      <span class="material-symbols-outlined text-5xl text-gray-400">image</span>
+                      <h3 class="font-medium">Upload Post Image</h3>
+                      <p class="text-sm text-gray-500">Drag and drop your image file here, or click to browse</p>
+                      <p class="text-xs text-gray-500">JPG, PNG or GIF (max. 10MB)</p>
+                      <input type="file" id="postImageUpload" name="image" class="hidden" accept="image/*">
+                      <button type="button" onclick="document.getElementById('postImageUpload').click()" class="mt-2 inline-block py-2 px-4 bg-primary-100 text-primary-700 rounded-full text-sm font-medium hover:bg-primary-200 transition-colors">
+                        Select Image
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex justify-end space-x-3 pt-6 border-t border-gray-200">
+                  <button type="button" class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                    Save as Draft
+                  </button>
+                  <button type="submit" class="px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors flex items-center">
+                    <span>Create Post</span>
+                    <span class="material-symbols-outlined ml-1 text-sm">arrow_forward</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#f3f1ff',
+              100: '#e9e5ff',
+              200: '#d5cfff',
+              300: '#b7a9ff',
+              400: '#9478ff',
+              500: '#7341ff',
+              600: '#631bff',
+              700: '#611bf8',
+              800: '#4607d0',
+              900: '#3c08aa',
+              DEFAULT: '#611bf8'
+            }
+          }
+        }
+      }
+    };
+
+    // Tab switching functionality
+    const tabs = {
+      project: document.getElementById('projectTab'),
+      post: document.getElementById('postTab'),
+      question: document.getElementById('questionTab')
+    };
+
+    const forms = {
+      project: document.getElementById('projectForm'),
+      post: document.getElementById('postForm'),
+      question: document.getElementById('questionForm')
+    };
+
+    function switchTab(activeTab) {
+      // Update tab styles
+      Object.keys(tabs).forEach(tabKey => {
+        const tab = tabs[tabKey];
+        const isActive = tabKey === activeTab;
+        tab.classList.toggle('bg-primary-50', isActive);
+        tab.classList.toggle('text-primary-700', isActive);
+        tab.classList.toggle('bg-gray-100', !isActive);
+        tab.classList.toggle('text-gray-700', !isActive);
+      });
+
+      // Show/hide forms
+      Object.keys(forms).forEach(formKey => {
+        const form = forms[formKey];
+        form.classList.toggle('hidden', formKey !== activeTab);
+      });
+    }
+
+    // Add click event listeners to tabs
+    Object.keys(tabs).forEach(tabKey => {
+      tabs[tabKey].addEventListener('click', () => switchTab(tabKey));
+    });
+
+    // Character counter for project description
+    const descriptionTextarea = document.getElementById('description');
+    const charCount = document.querySelector('.text-xs.text-gray-500:last-child');
+
+    if (descriptionTextarea && charCount) {
+      descriptionTextarea.addEventListener('input', function() {
+        const currentLength = this.value.length;
+        charCount.textContent = `${currentLength}/10000`;
+      });
+    }
+
+    // Initialize with project tab active
+    document.addEventListener('DOMContentLoaded', function() {
+      switchTab('project');
+    });
+  </script>
+</body>
+</html>

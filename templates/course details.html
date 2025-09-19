@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Webcrumbs Plugin</title>
+  <style>
+    @import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
+    @import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
+    @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined);
+    @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css);
+  </style>
+</head>
+
+<body>
+  <div id="webcrumbs">
+    <div class="min-h-screen bg-gray-50">
+      <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between items-center py-6">
+            <div class="flex items-center"> <span
+                class="material-symbols-outlined text-primary-600 text-3xl mr-2">school</span>
+              <h1 class="text-2xl font-bold">CodeMasters Academy</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8"> <a href="#"
+                class="text-gray-700 hover:text-primary-600 transition-colors duration-200">Home</a> <a href="#"
+                class="text-primary-600 font-medium border-b-2 border-primary-500">Courses</a> <a href="#"
+                class="text-gray-700 hover:text-primary-600 transition-colors duration-200">Pricing</a> <a href="#"
+                class="text-gray-700 hover:text-primary-600 transition-colors duration-200">About</a> <a href="#"
+                class="text-gray-700 hover:text-primary-600 transition-colors duration-200">Contact</a> </nav>
+            <div class="flex items-center"> <button
+                class="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-colors duration-200">Sign
+                In</button> <button class="md:hidden ml-4"> <span class="material-symbols-outlined">menu</span>
+              </button> </div>
+          </div>
+        </div>
+      </header>
+      <div class="bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <nav class="flex py-3 text-sm"> <a href="#"
+              class="text-gray-500 hover:text-primary-600 transition-colors duration-200">Home</a> <span
+              class="mx-2 text-gray-400">/</span> <a href="#"
+              class="text-gray-500 hover:text-primary-600 transition-colors duration-200">Courses</a> <span
+              class="mx-2 text-gray-400">/</span> <span class="text-primary-600 font-medium">Java</span> </nav>
+        </div>
+      </div>
+      <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+          <div class="flex flex-col md:flex-row md:items-center justify-between">
+            <div class="flex items-center mb-4 md:mb-0">
+              <div class="flex-shrink-0 bg-primary-100 p-3 rounded-full mr-4"> <span
+                  class="material-symbols-outlined text-primary-600 text-3xl">code</span> </div>
+              <div>
+                <h1 class="text-2xl font-bold mb-1">Java Programming</h1>
+                <p class="text-gray-600">Master Java with our comprehensive course catalog</p>
+              </div>
+            </div>
+            <div class="flex space-x-3"> <button
+                class="flex items-center space-x-1 px-3 py-1 border border-gray-300 rounded-full hover:bg-gray-50 transition-colors duration-200">
+                <span class="material-symbols-outlined text-gray-500 text-sm">bookmark</span> <span
+                  class="text-sm">Save</span> </button> <button
+                class="flex items-center space-x-1 px-3 py-1 border border-gray-300 rounded-full hover:bg-gray-50 transition-colors duration-200">
+                <span class="material-symbols-outlined text-gray-500 text-sm">share</span> <span
+                  class="text-sm">Share</span> </button> </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <div class="h-48 bg-gradient-to-r from-blue-500 to-primary-600 relative"> <img
+                src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+                alt="Java Web Development" class="w-full h-full object-cover mix-blend-overlay"
+                keywords="java, web development, programming, code" />
+              <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/70 to-transparent">
+                <h2 class="text-white text-xl font-bold">Java Web Development</h2>
+                <p class="text-white/80 text-sm">Build dynamic web applications</p>
+              </div>
+            </div>
+            <div class="p-4">
+              <div class="flex items-center text-sm text-gray-500 mb-4"> <span class="flex items-center mr-4"> <span
+                    class="material-symbols-outlined text-sm mr-1">play_circle</span> 42 videos </span> <span
+                  class="flex items-center"> <span class="material-symbols-outlined text-sm mr-1">schedule</span> 18
+                  hours </span> </div>
+              <details class="mb-3">
+                <summary
+                  class="flex justify-between items-center cursor-pointer py-2 font-medium hover:text-primary-600 transition-colors duration-200">
+                  <span>Frontend Development</span> <span
+                    class="material-symbols-outlined text-gray-400 transform transition-transform duration-200 group-open:rotate-180">expand_more</span>
+                </summary>
+                <ul class="pl-5 mt-2 space-y-2">
+                  <li class="flex items-center text-gray-600 hover:text-primary-600 transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm mr-2">play_circle</span> HTML Fundamentals (8 videos)
+                  </li>
+                  <li class="flex items-center text-gray-600 hover:text-primary-600 transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm mr-2">play_circle</span> CSS Styling (10 videos)
+                  </li>
+                  <li class="flex items-center text-gray-600 hover:text-primary-600 transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm mr-2">play_circle</span> JavaScript Integration (6
+                    videos) </li>
+                </ul>
+              </details>
+              <details class="mb-3">
+                <summary
+                  class="flex justify-between items-center cursor-pointer py-2 font-medium hover:text-primary-600 transition-colors duration-200">
+                  <span>Backend Development</span> <span
+                    class="material-symbols-outlined text-gray-400 transform transition-transform duration-200 group-open:rotate-180">expand_more</span>
+                </summary>
+                <ul class="pl-5 mt-2 space-y-2">
+                  <li class="flex items-center text-gray-600 hover:text-primary-600 transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm mr-2">play_circle</span> Servlet Basics (7 videos)
+                  </li>
+                  <li class="flex items-center text-gray-600 hover:text-primary-600 transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm mr-2">play_circle</span> JSP Integration (5 videos)
+                  </li>
+                  <li class="flex items-center text-gray-600 hover:text-primary-600 transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm mr-2">play_circle</span> Spring Framework (6 videos)
+                  </li>
+                </ul>
+              </details> <button
+                class="mt-2 w-full bg-primary-600 text-white py-2 rounded-md hover:bg-primary-700 transition-colors duration-200">
+                Explore Course </button>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <div class="h-48 bg-gradient-to-r from-green-500 to-primary-600 relative"> <img
+                src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+                alt="Java Software Development" class="w-full h-full object-cover mix-blend-overlay"
+                keywords="java, software development, desktop application, programming" />
+              <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/70 to-transparent">
+                <h2 class="text-white text-xl font-bold">Java Software Development</h2>
+                <p class="text-white/80 text-sm">Create powerful desktop applications</p>
+              </div>
+            </div>
+            <div class="p-4">
+              <div class="flex items-center text-sm text-gray-500 mb-4"> <span class="flex items-center mr-4"> <span
+                    class="material-symbols-outlined text-sm mr-1">play_circle</span> 38 videos </span> <span
+                  class="flex items-center"> <span class="material-symbols-outlined text-sm mr-1">schedule</span> 22
+                  hours </span> </div>
+              <details class="mb-3">
+                <summary
+                  class="flex justify-between items-center cursor-pointer py-2 font-medium hover:text-primary-600 transition-colors duration-200">
+                  <span>Core Java</span> <span
+                    class="material-symbols-outlined text-gray-400 transform transition-transform duration-200 group-open:rotate-180">expand_more</span>
+                </summary>
+                <ul class="pl-5 mt-2 space-y-2">
+                  <li class="flex items-center text-gray-600 hover:text-primary-600 transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm mr-2">play_circle</span> OOP Principles (7 videos)
+                  </li>
+                  <li class="flex items-center text-gray-600 hover:text-primary-600 transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm mr-2">play_circle</span> Collections Framework (5
+                    videos) </li>
+                  <li class="flex items-center text-gray-600 hover:text-primary-600 transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm mr-2">play_circle</span> Exception Handling (4
+                    videos) </li>
+                </ul>
+              </details>
+              <details class="mb-3">
+                <summary
+                  class="flex justify-between items-center cursor-pointer py-2 font-medium hover:text-primary-600 transition-colors duration-200">
+                  <span>UI Development</span> <span
+                    class="material-symbols-outlined text-gray-400 transform transition-transform duration-200 group-open:rotate-180">expand_more</span>
+                </summary>
+                <ul class="pl-5 mt-2 space-y-2">
+                  <li class="flex items-center text-gray-600 hover:text-primary-600 transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm mr-2">play_circle</span> JavaFX Basics (8 videos)
+                  </li>
+                  <li class="flex items-center text-gray-600 hover:text-primary-600 transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm mr-2">play_circle</span> Swing Components (6 videos)
+                  </li>
+                  <li class="flex items-center text-gray-600 hover:text-primary-600 transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm mr-2">play_circle</span> UI Design Patterns (8
+                    videos) </li>
+                </ul>
+              </details> <button
+                class="mt-2 w-full bg-primary-600 text-white py-2 rounded-md hover:bg-primary-700 transition-colors duration-200">
+                Explore Course </button>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <div class="h-48 bg-gradient-to-r from-purple-500 to-primary-600 relative"> <img
+                src="https://images.unsplash.com/photo-1605745341075-1b7460b99df8?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+                alt="Java Docker" class="w-full h-full object-cover mix-blend-overlay"
+                keywords="java, docker, containerization, devops" />
+              <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/70 to-transparent">
+                <h2 class="text-white text-xl font-bold">Java Docker</h2>
+                <p class="text-white/80 text-sm">Containerize your Java applications</p>
+              </div>
+            </div>
+            <div class="p-4">
+              <div class="flex items-center text-sm text-gray-500 mb-4"> <span class="flex items-center mr-4"> <span
+                    class="material-symbols-outlined text-sm mr-1">play_circle</span> 28 videos </span> <span
+                  class="flex items-center"> <span class="material-symbols-outlined text-sm mr-1">schedule</span> 15
+                  hours </span> </div>
+              <details class="mb-3">
+                <summary
+                  class="flex justify-between items-center cursor-pointer py-2 font-medium hover:text-primary-600 transition-colors duration-200">
+                  <span>Docker Fundamentals</span> <span
+                    class="material-symbols-outlined text-gray-400 transform transition-transform duration-200 group-open:rotate-180">expand_more</span>
+                </summary>
+                <ul class="pl-5 mt-2 space-y-2">
+                  <li class="flex items-center text-gray-600 hover:text-primary-600 transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm mr-2">play_circle</span> Docker Introduction (5
+                    videos) </li>
+                  <li class="flex items-center text-gray-600 hover:text-primary-600 transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm mr-2">play_circle</span> Container Lifecycle (4
+                    videos) </li>
+                  <li class="flex items-center text-gray-600 hover:text-primary-600 transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm mr-2">play_circle</span> Docker Compose (6 videos)
+                  </li>
+                </ul>
+              </details>
+              <details class="mb-3">
+                <summary
+                  class="flex justify-between items-center cursor-pointer py-2 font-medium hover:text-primary-600 transition-colors duration-200">
+                  <span>Java Integration</span> <span
+                    class="material-symbols-outlined text-gray-400 transform transition-transform duration-200 group-open:rotate-180">expand_more</span>
+                </summary>
+                <ul class="pl-5 mt-2 space-y-2">
+                  <li class="flex items-center text-gray-600 hover:text-primary-600 transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm mr-2">play_circle</span> Dockerizing Spring Apps (5
+                    videos) </li>
+                  <li class="flex items-center text-gray-600 hover:text-primary-600 transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm mr-2">play_circle</span> Java Microservices (4
+                    videos) </li>
+                  <li class="flex items-center text-gray-600 hover:text-primary-600 transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm mr-2">play_circle</span> CI/CD Integration (4 videos)
+                  </li>
+                </ul>
+              </details> <button
+                class="mt-2 w-full bg-primary-600 text-white py-2 rounded-md hover:bg-primary-700 transition-colors duration-200">
+                Explore Course </button>
+            </div>
+          </div>
+        </div>
+        <h2 class="text-2xl font-bold mb-6">Other Programming Languages</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+            <div class="h-32 bg-gradient-to-r from-blue-400 to-blue-600 relative"> <img
+                src="https://images.unsplash.com/photo-1526379879527-8559ecfcaec0?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+                alt="Python Programming" class="w-full h-full object-cover mix-blend-overlay"
+                keywords="python, programming, code" />
+              <div
+                class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <button
+                  class="bg-white text-primary-600 px-4 py-2 rounded-md font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  View Courses </button> </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold mb-1">Python Programming</h3>
+              <p class="text-sm text-gray-600 mb-2">Data Science, Web Dev, AI &amp; more</p>
+              <div class="flex items-center text-xs text-gray-500"> <span class="flex items-center mr-3"> <span
+                    class="material-symbols-outlined text-xs mr-1">folder</span> 4 categories </span> <span
+                  class="flex items-center"> <span class="material-symbols-outlined text-xs mr-1">play_circle</span> 95+
+                  videos </span> </div>
+            </div>
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+            <div class="h-32 bg-gradient-to-r from-yellow-400 to-yellow-600 relative"> <img
+                src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+                alt="JavaScript" class="w-full h-full object-cover mix-blend-overlay"
+                keywords="javascript, web development, frontend" />
+              <div
+                class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <button
+                  class="bg-white text-primary-600 px-4 py-2 rounded-md font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  View Courses </button> </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold mb-1">JavaScript</h3>
+              <p class="text-sm text-gray-600 mb-2">Frontend, Node.js, React &amp; more</p>
+              <div class="flex items-center text-xs text-gray-500"> <span class="flex items-center mr-3"> <span
+                    class="material-symbols-outlined text-xs mr-1">folder</span> 5 categories </span> <span
+                  class="flex items-center"> <span class="material-symbols-outlined text-xs mr-1">play_circle</span>
+                  120+ videos </span> </div>
+            </div>
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+            <div class="h-32 bg-gradient-to-r from-purple-400 to-purple-600 relative"> <img
+                src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+                alt="C# Programming" class="w-full h-full object-cover mix-blend-overlay"
+                keywords="csharp, dotnet, programming, microsoft" />
+              <div
+                class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <button
+                  class="bg-white text-primary-600 px-4 py-2 rounded-md font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  View Courses </button> </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold mb-1">C# Programming</h3>
+              <p class="text-sm text-gray-600 mb-2">.NET, Game Dev, Desktop &amp; more</p>
+              <div class="flex items-center text-xs text-gray-500"> <span class="flex items-center mr-3"> <span
+                    class="material-symbols-outlined text-xs mr-1">folder</span> 3 categories </span> <span
+                  class="flex items-center"> <span class="material-symbols-outlined text-xs mr-1">play_circle</span> 85+
+                  videos </span> </div>
+            </div>
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+            <div class="h-32 bg-gradient-to-r from-indigo-400 to-indigo-600 relative"> <img
+                src="https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+                alt="PHP Programming" class="w-full h-full object-cover mix-blend-overlay"
+                keywords="php, web development, backend" />
+              <div
+                class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <button
+                  class="bg-white text-primary-600 px-4 py-2 rounded-md font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  View Courses </button> </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold mb-1">PHP Programming</h3>
+              <p class="text-sm text-gray-600 mb-2">Web Dev, Laravel, WordPress &amp; more</p>
+              <div class="flex items-center text-xs text-gray-500"> <span class="flex items-center mr-3"> <span
+                    class="material-symbols-outlined text-xs mr-1">folder</span> 3 categories </span> <span
+                  class="flex items-center"> <span class="material-symbols-outlined text-xs mr-1">play_circle</span> 70+
+                  videos </span> </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer class="bg-gray-800 text-white mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 class="text-lg font-bold mb-4">CodeMasters Academy</h3>
+              <p class="text-gray-400 mb-4">Empowering developers with high-quality programming courses since 2015.</p>
+              <div class="flex space-x-4"> <a href="#"
+                  class="text-gray-400 hover:text-white transition-colors duration-200"> <i
+                    class="fa-brands fa-facebook text-xl"></i> </a> <a href="#"
+                  class="text-gray-400 hover:text-white transition-colors duration-200"> <i
+                    class="fa-brands fa-twitter text-xl"></i> </a> <a href="#"
+                  class="text-gray-400 hover:text-white transition-colors duration-200"> <i
+                    class="fa-brands fa-linkedin text-xl"></i> </a> <a href="#"
+                  class="text-gray-400 hover:text-white transition-colors duration-200"> <i
+                    class="fa-brands fa-youtube text-xl"></i> </a> </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold mb-4">Popular Courses</h3>
+              <ul class="space-y-2">
+                <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Java
+                    Programming</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Python for Data
+                    Science</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Full-Stack
+                    JavaScript</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">C# Game
+                    Development</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">PHP with
+                    Laravel</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+              <ul class="space-y-2">
+                <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">About Us</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Contact
+                    Support</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Privacy Policy</a>
+                </li>
+                <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">Terms of
+                    Service</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">FAQ</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold mb-4">Newsletter</h3>
+              <p class="text-gray-400 mb-4">Subscribe to our newsletter for the latest updates and courses.</p>
+              <form class="flex"> <input type="email" placeholder="Your email"
+                  class="flex-1 px-3 py-2 bg-gray-700 rounded-l-md focus:outline-none focus:ring-1 focus:ring-primary-500" />
+                <button type="submit"
+                  class="bg-primary-600 px-4 py-2 rounded-r-md hover:bg-primary-700 transition-colors duration-200">
+                  <span class="material-symbols-outlined">send</span> </button> </form>
+            </div>
+          </div>
+          <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+            <p>© 2023 CodeMasters Academy. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      content: ["./src/**/*.{html,js}"],
+      theme: { "name": "Bluewave", "fontFamily": { "sans": ["Open Sans", "ui-sans-serif", "system-ui", "sans-serif", "\"Apple Color Emoji\"", "\"Segoe UI Emoji\"", "\"Segoe UI Symbol\"", "\"Noto Color Emoji\""] }, "extend": { "fontFamily": { "title": ["Lato", "ui-sans-serif", "system-ui", "sans-serif", "\"Apple Color Emoji\"", "\"Segoe UI Emoji\"", "\"Segoe UI Symbol\"", "\"Noto Color Emoji\""], "body": ["Open Sans", "ui-sans-serif", "system-ui", "sans-serif", "\"Apple Color Emoji\"", "\"Segoe UI Emoji\"", "\"Segoe UI Symbol\"", "\"Noto Color Emoji\""] }, "colors": { "neutral": { "50": "#f7f7f7", "100": "#eeeeee", "200": "#e0e0e0", "300": "#cacaca", "400": "#b1b1b1", "500": "#999999", "600": "#7f7f7f", "700": "#676767", "800": "#545454", "900": "#464646", "950": "#282828" }, "primary": { "50": "#f3f1ff", "100": "#e9e5ff", "200": "#d5cfff", "300": "#b7a9ff", "400": "#9478ff", "500": "#7341ff", "600": "#631bff", "700": "#611bf8", "800": "#4607d0", "900": "#3c08aa", "950": "#220174", "DEFAULT": "#611bf8" } } }, "fontSize": { "xs": ["12px", { "lineHeight": "19.200000000000003px" }], "sm": ["14px", { "lineHeight": "21px" }], "base": ["16px", { "lineHeight": "25.6px" }], "lg": ["18px", { "lineHeight": "27px" }], "xl": ["20px", { "lineHeight": "28px" }], "2xl": ["24px", { "lineHeight": "31.200000000000003px" }], "3xl": ["30px", { "lineHeight": "36px" }], "4xl": ["36px", { "lineHeight": "41.4px" }], "5xl": ["48px", { "lineHeight": "52.800000000000004px" }], "6xl": ["60px", { "lineHeight": "66px" }], "7xl": ["72px", { "lineHeight": "75.60000000000001px" }], "8xl": ["96px", { "lineHeight": "100.80000000000001px" }], "9xl": ["128px", { "lineHeight": "134.4px" }] }, "borderRadius": { "none": "0px", "sm": "6px", "DEFAULT": "12px", "md": "18px", "lg": "24px", "xl": "36px", "2xl": "48px", "3xl": "72px", "full": "9999px" }, "spacing": { "0": "0px", "1": "4px", "2": "8px", "3": "12px", "4": "16px", "5": "20px", "6": "24px", "7": "28px", "8": "32px", "9": "36px", "10": "40px", "11": "44px", "12": "48px", "14": "56px", "16": "64px", "20": "80px", "24": "96px", "28": "112px", "32": "128px", "36": "144px", "40": "160px", "44": "176px", "48": "192px", "52": "208px", "56": "224px", "60": "240px", "64": "256px", "72": "288px", "80": "320px", "96": "384px", "px": "1px", "0.5": "2px", "1.5": "6px", "2.5": "10px", "3.5": "14px" } },
+      plugins: [],
+      important: '#webcrumbs'
+    };
+  </script>
+
+</body>
+
+</html>

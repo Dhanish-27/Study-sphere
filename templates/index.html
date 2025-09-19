@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduReddit - Professional Platform</title>
+  <style>
+    @import url(https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&display=swap);
+    @import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap);
+    @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined);
+    
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-white: #ffffff;
+      --border-light: #e2e8f0;
+      --border-medium: #cbd5e1;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --accent-primary: #4f46e5;
+      --accent-hover: #3730a3;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    #webcrumbs {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header Styles */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border-light);
+      padding: 0.75rem 1rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .search-container {
+      flex: 1;
+      max-width: 400px;
+      margin: 0 2rem;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+    }
+
+    .nav-main {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      padding: 0.5rem 0;
+    }
+
+    .nav-link:hover {
+      color: var(--accent-primary);
+    }
+
+    .profile-menu {
+      position: relative;
+    }
+
+    .profile-button {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+    }
+
+    .profile-avatar {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      border: 2px solid var(--border-light);
+      overflow: hidden;
+    }
+
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      right: 0;
+      top: 100%;
+      margin-top: 0.5rem;
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      box-shadow: var(--shadow-lg);
+      min-width: 12rem;
+      z-index: 1000;
+      overflow: hidden;
+    }
+
+    .dropdown-item {
+      display: block;
+      width: 100%;
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: background-color 0.2s ease;
+      border: none;
+      background: none;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .dropdown-item:hover {
+      background-color: #f1f5f9;
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background-color: var(--border-light);
+      margin: 0.25rem 0;
+    }
+
+    /* Main Layout */
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem;
+      display: grid;
+      grid-template-columns: 250px 1fr 300px;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+      position: sticky;
+      top: 5rem;
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sidebar-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .sidebar-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .sidebar-title {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .badge {
+      padding: 0.25rem 0.5rem;
+      background: var(--accent-primary);
+      color: white;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    /* Professional List Styles */
+    .professional-list {
+      list-style: none;
+    }
+
+    .list-item {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .list-item:hover {
+      border-color: var(--accent-primary);
+      background: #f8fafc;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .list-item-icon {
+      margin-right: 0.75rem;
+      font-size: 1.25rem;
+      width: 1.5rem;
+      text-align: center;
+    }
+
+    .list-item-content {
+      flex: 1;
+    }
+
+    .list-item-title {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .list-item-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* Main Content Area */
+    .content-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .post-creator {
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .creator-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .creator-avatar {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background: #e0e7ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--accent-primary);
+    }
+
+    .creator-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .creator-input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
+    .creator-actions {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-light);
+      padding-top: 1rem;
+    }
+
+    .action-button {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      background: var(--bg-white);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 500;
+    }
+
+    .action-button:hover {
+      background: #f8fafc;
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+    }
+
+    .content-tabs {
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 0.75rem;
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tab-button {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      background: var(--bg-white);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    .tab-button.active {
+      background: var(--accent-primary);
+      color: white;
+      border-color: var(--accent-primary);
+    }
+
+    .tab-button:hover:not(.active) {
+      background: #f8fafc;
+      border-color: var(--accent-primary);
+    }
+
+    /* Content Blocks */
+    .content-block {
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .content-block-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .content-block-title {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .view-all-button {
+      color: var(--accent-primary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .view-all-button:hover {
+      color: var(--accent-hover);
+    }
+
+    /* Community Items */
+    .community-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      transition: all 0.2s ease;
+    }
+
+    .community-item:hover {
+      border-color: var(--accent-primary);
+      background: #f8fafc;
+    }
+
+    .community-icon {
+      font-size: 1.5rem;
+      color: var(--accent-primary);
+    }
+
+    .community-info {
+      flex: 1;
+    }
+
+    .community-name {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+    }
+
+    .community-members {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* Project Items */
+    .project-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      transition: all 0.2s ease;
+    }
+
+    .project-item:hover {
+      border-color: var(--accent-primary);
+      background: #f8fafc;
+    }
+
+    .project-avatar {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .project-rank {
+      position: absolute;
+      top: -0.25rem;
+      right: -0.25rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .project-info {
+      flex: 1;
+    }
+
+    .project-title {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+    }
+
+    .project-details {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* Mobile Navigation */
+    .mobile-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-white);
+      border-top: 1px solid var(--border-light);
+      padding: 0.5rem 1rem;
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-button.active {
+      color: var(--accent-primary);
+    }
+
+    .nav-button:hover {
+      color: var(--accent-primary);
+    }
+
+    .nav-icon {
+      font-size: 1.5rem;
+    }
+
+    .nav-label {
+      font-size: 0.7rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .main-container {
+        grid-template-columns: 1fr 300px;
+      }
+      
+      .sidebar:first-child {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .main-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+      }
+      
+      .sidebar:last-child {
+        display: none;
+      }
+      
+      .search-container {
+        display: none;
+      }
+      
+      .nav-main {
+        display: none;
+      }
+      
+      .mobile-nav {
+        display: flex;
+      }
+      
+      .header-container {
+        justify-content: space-between;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-container {
+        padding: 0 0.5rem;
+      }
+      
+      .logo {
+        font-size: 1.25rem;
+      }
+      
+      .main-container {
+        padding: 0.75rem;
+      }
+      
+      .post-creator,
+      .content-tabs,
+      .content-block {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="webcrumbs">
+    <!-- Header -->
+    <header>
+      <div class="header-container">
+        <div class="logo">EduReddit</div>
+        
+        <div class="search-container">
+          <span class="material-symbols-outlined search-icon">search</span>
+          <input type="text" placeholder="Search posts, projects, or courses..." class="search-input">
+        </div>
+        
+        <div class="nav-main">
+          <a href="#" class="nav-link">Home</a>
+          <a href="#" class="nav-link">Courses</a>
+          <a href="#" class="nav-link">Projects</a>
+          <a href="#" class="nav-link">Questions</a>
+        </div>
+        
+        <div class="profile-menu">
+          <button class="profile-button">
+            <div class="profile-avatar">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MzkyNDZ8MHwxfHNlYXJjaHwxfHxwcm9maWxlfGVufDB8fHx8MTc1NTY4MTA1MHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Profile">
+            </div>
+            <span class="material-symbols-outlined">expand_more</span>
+          </button>
+          
+          <div class="dropdown-menu" style="display: none;">
+            <a href="#" class="dropdown-item">Profile</a>
+            <a href="#" class="dropdown-item">My Posts</a>
+            <a href="#" class="dropdown-item">My Courses</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item" style="color: #dc2626;">Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+      <!-- Left Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Filters</h3>
+          <ul class="professional-list">
+            <li class="list-item">
+              <span class="material-symbols-outlined list-item-icon" style="color: #3b82f6;">functions</span>
+              <span class="list-item-title">ML Oriented</span>
+            </li>
+            <li class="list-item">
+              <span class="material-symbols-outlined list-item-icon" style="color: #10b981;">code</span>
+              <span class="list-item-title">Web Development</span>
+            </li>
+            <li class="list-item">
+              <span class="material-symbols-outlined list-item-icon" style="color: #8b5cf6;">add_circle</span>
+              <span class="list-item-title">More Filters</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">My Content</h3>
+          <ul class="professional-list">
+            <li class="list-item">
+              <span class="material-symbols-outlined list-item-icon">help</span>
+              <span class="list-item-title">My Questions</span>
+            </li>
+            <li class="list-item">
+              <span class="material-symbols-outlined list-item-icon">lightbulb</span>
+              <span class="list-item-title">My Projects</span>
+            </li>
+            <li class="list-item">
+              <span class="material-symbols-outlined list-item-icon">bookmark</span>
+              <span class="list-item-title">Saved</span>
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="content-area">
+        <!-- Post Creator -->
+        <div class="post-creator">
+          <div class="creator-header">
+            <div class="creator-avatar">JD</div>
+            <input type="text" placeholder="What's your doubt?" class="creator-input">
+          </div>
+          <div class="creator-actions">
+            <button class="action-button">
+              <span class="material-symbols-outlined" style="color: #3b82f6;">help</span>
+              Ask
+            </button>
+            <button class="action-button">
+              <span class="material-symbols-outlined" style="color: #10b981;">lightbulb</span>
+              Share Project
+            </button>
+            <button class="action-button">
+              <span class="material-symbols-outlined" style="color: #8b5cf6;">edit_note</span>
+              Post
+            </button>
+          </div>
+        </div>
+
+        <!-- Content Tabs -->
+        <div class="content-tabs">
+          <button class="tab-button active">
+            <span class="material-symbols-outlined">local_fire_department</span>
+            Trending
+          </button>
+          <button class="tab-button">
+            <span class="material-symbols-outlined">new_releases</span>
+            Latest
+          </button>
+          <button class="tab-button">
+            <span class="material-symbols-outlined">help</span>
+            Questions
+          </button>
+          <button class="tab-button">
+            <span class="material-symbols-outlined">menu_book</span>
+            Posts
+          </button>
+          <button class="tab-button">
+            <span class="material-symbols-outlined">lightbulb</span>
+            Projects
+          </button>
+        </div>
+
+        <!-- Dynamic Content Area -->
+        {% block content %}
+       
+
+
+
+        {% endblock %}
+      </main>
+
+      <!-- Right Sidebar -->
+      <aside class="sidebar">
+        <div class="content-block">
+          <div class="content-block-header">
+            <h3 class="content-block-title">Communities</h3>
+            <span class="badge">Active</span>
+          </div>
+          <div class="community-item">
+            <span class="material-symbols-outlined community-icon">groups</span>
+            <div class="community-info">
+              <div class="community-name">ML Enthusiasts</div>
+              <div class="community-members">1.2k members</div>
+            </div>
+          </div>
+          <div class="community-item">
+            <span class="material-symbols-outlined community-icon">code</span>
+            <div class="community-info">
+              <div class="community-name">Web Developers</div>
+              <div class="community-members">890 members</div>
+            </div>
+          </div>
+          <a href="#" class="view-all-button">Explore Communities</a>
+        </div>
+
+        <div class="content-block">
+          <div class="content-block-header">
+            <h3 class="content-block-title">Top Projects</h3>
+            <a href="#" class="view-all-button">View All</a>
+          </div>
+          <div class="project-item">
+            <div class="project-avatar" style="background: #e0e7ff; color: #4f46e5;">
+              PT
+              <div class="project-rank" style="background: #f59e0b;">1</div>
+            </div>
+            <div class="project-info">
+              <div class="project-title">AI Chatbot Project</div>
+              <div class="project-details">Machine Learning • 324 stars</div>
+            </div>
+          </div>
+          <div class="project-item">
+            <div class="project-avatar" style="background: #fce7f3; color: #db2777;">
+              EW
+              <div class="project-rank" style="background: #9ca3af;">2</div>
+            </div>
+            <div class="project-info">
+              <div class="project-title">React Dashboard</div>
+              <div class="project-details">Web Development • 289 stars</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="content-block-header">
+            <h3 class="content-block-title">Best Contributors</h3>
+            <a href="#" class="view-all-button">Leaderboard</a>
+          </div>
+          <div class="project-item">
+            <div class="project-avatar" style="background: #d1fae5; color: #059669;">
+              JK
+              <div class="project-rank" style="background: #9ca3af;">1</div>
+            </div>
+            <div class="project-info">
+              <div class="project-title">Jason Kim</div>
+              <div class="project-details">512 helpful replies</div>
+            </div>
+          </div>
+          <div class="project-item">
+            <div class="project-avatar" style="background: #dbeafe; color: #1d4ed8;">
+              SM
+              <div class="project-rank" style="background: #9ca3af;">2</div>
+            </div>
+            <div class="project-info">
+              <div class="project-title">Sarah Miller</div>
+              <div class="project-details">489 helpful replies</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+      <button class="nav-button active">
+        <span class="material-symbols-outlined nav-icon">home</span>
+        <span class="nav-label">Home</span>
+      </button>
+      <button class="nav-button">
+        <span class="material-symbols-outlined nav-icon">search</span>
+        <span class="nav-label">Explore</span>
+      </button>
+      <button class="nav-button">
+        <span class="material-symbols-outlined nav-icon">add_circle</span>
+        <span class="nav-label">Create</span>
+      </button>
+      <button class="nav-button">
+        <span class="material-symbols-outlined nav-icon">notifications</span>
+        <span class="nav-label">Alerts</span>
+      </button>
+      <button class="nav-button">
+        <span class="material-symbols-outlined nav-icon">person</span>
+        <span class="nav-label">Profile</span>
+      </button>
+    </nav>
+  </div>
+
+  <script>
+    // Simple JavaScript for dropdown functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const profileButton = document.querySelector('.profile-button');
+      const dropdownMenu = document.querySelector('.dropdown-menu');
+      
+      profileButton.addEventListener('click', function() {
+        const isVisible = dropdownMenu.style.display === 'block';
+        dropdownMenu.style.display = isVisible ? 'none' : 'block';
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!event.target.closest('.profile-menu')) {
+          dropdownMenu.style.display = 'none';
+        }
+      });
+      
+      // Tab switching functionality
+      const tabButtons = document.querySelectorAll('.tab-button');
+      tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

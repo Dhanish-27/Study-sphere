@@ -1,0 +1,122 @@
+<!-- question starts here  -->
+
+
+
+<!-- <div class="space-y-4">
+                  <div class="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow">
+                    <div class="flex justify-between items-start mb-3">
+                      <div class="flex items-center gap-3">
+                        <div class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700">
+                        <span class="material-symbols-outlined">person</span>
+                        </div>
+                      <div>
+                        <div class="font-medium">Alex Johnson</div>
+                        <div class="text-sm text-gray-500">2 hours ago • Mathematics</div>
+                      </div>
+                      </div> <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">❓
+                      Question</span>
+                  </div>
+                  <h3 class="text-lg font-semibold mb-2">Can someone explain the practical applications of differential
+                    equations?</h3>
+                  <p class="text-gray-700 mb-4">I understand the mathematical concept, but I&#x27;m struggling to see
+                    how they&#x27;re used in real-world scenarios. Any examples would be greatly appreciated!</p>
+                  <div class="flex justify-between text-sm text-gray-500 pt-3 border-t">
+                    <div class="flex items-center gap-4"> <button
+                        class="flex items-center gap-1 hover:text-primary-600 transition-colors"> <span
+                          class="material-symbols-outlined">arrow_upward</span> <span>42</span> </button> <button
+                        class="flex items-center gap-1 hover:text-primary-600 transition-colors"> <span
+                          class="material-symbols-outlined">comment</span> <span>8 replies</span> </button> </div>
+                    <button class="hover:text-primary-600 transition-colors"> <span
+                        class="material-symbols-outlined">bookmark</span> </button>
+                  </div>
+                </div> -->
+
+
+
+
+<!-- question ends here  -->
+
+
+<!-- post starts here  -->
+
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<div class="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow">
+  <div class="flex justify-between items-start mb-3">
+    <div class="flex items-center gap-3">
+      <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-green-700">
+        <span class="material-symbols-outlined">person</span>
+      </div>
+      <div>
+        <div class="font-medium">Samantha Lee</div>
+        <div class="text-sm text-gray-500">Yesterday • Programming</div>
+      </div>
+    </div> <span class="px-2 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">📖
+      Post</span>
+  </div>
+  <h3 class="text-lg font-semibold mb-2">5 Common Mistakes Beginners Make in Python</h3>
+  <p class="text-gray-700 mb-4">After teaching Python for 3 years, I&#x27;ve compiled the most frequent
+    errors that new programmers make. This guide will help you avoid these pitfalls and write cleaner
+    code from day one.</p>
+  <div class="rounded-lg overflow-hidden mb-4 bg-gray-100"> <img
+      src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+      alt="Python code on screen" class="w-full h-48 object-cover"
+      keywords="python, coding, programming, computer science" /> </div>
+  <div class="flex justify-between text-sm text-gray-500 pt-3 border-t">
+    <div class="flex items-center gap-4"> <button
+        class="flex items-center gap-1 hover:text-primary-600 transition-colors"> <span
+          class="material-symbols-outlined">thumb_up</span> <span>156</span> </button> <button
+        class="flex items-center gap-1 hover:text-primary-600 transition-colors"> <span
+          class="material-symbols-outlined">comment</span> <span>24 comments</span> </button> </div>
+    <div class="flex items-center gap-2"> <span class="material-symbols-outlined">visibility</span>
+      <span>1.2k views</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow">
+  <div class="flex justify-between items-start mb-3">
+    <div class="flex items-center gap-3">
+      <div class="h-10 w-10 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-700">
+        <span class="material-symbols-outlined">person</span>
+      </div>
+      <div>
+        <div class="font-medium">Marco Rodriguez</div>
+        <div class="text-sm text-gray-500">3 days ago • Science</div>
+      </div>
+    </div> <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-medium">💡
+      Project</span>
+  </div>
+  <h3 class="text-lg font-semibold mb-2">DIY Solar-Powered Water Filtration System</h3>
+  <p class="text-gray-700 mb-4">I built a portable water filtration system that runs entirely on solar
+    energy for my science fair project. It can purify up to 2 liters of water per hour using readily
+    available materials.</p>
+  <div class="rounded-lg overflow-hidden mb-4 bg-gray-100"> <img
+      src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+      alt="Solar panels with water filtration system" class="w-full h-48 object-cover"
+      keywords="solar energy, water filtration, science project, renewable energy" /> </div>
+  <div class="flex justify-between text-sm text-gray-500 pt-3 border-t">
+    <div class="flex items-center gap-4"> <button
+        class="flex items-center gap-1 hover:text-primary-600 transition-colors"> <span
+          class="material-symbols-outlined">thumb_up</span> <span>89</span> </button> <button
+        class="flex items-center gap-1 hover:text-primary-600 transition-colors"> <span
+          class="material-symbols-outlined">comment</span> <span>17 comments</span> </button> </div>
+    <button
+      class="flex items-center gap-1 px-3 py-1 bg-primary-100 text-primary-700 rounded-full hover:bg-primary-200 transition-colors">
+      <span class="material-symbols-outlined text-sm">group</span> <span class="text-xs font-medium">Join Project</span>
+    </button>
+  </div>
+</div>
+
+<div class="text-center py-4"> <button
+    class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors shadow-sm">
+    <span>Load More</span> <span class="material-symbols-outlined animate-bounce">expand_more</span>
+  </button>
+</div>
+</div>
+{% endblock %}

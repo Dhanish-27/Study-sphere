@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Profile - EduReddit</title>
+  <style>
+    @import url(https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap);
+    @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined);
+    
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-inter">
+  <div id="webcrumbs">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <span class="text-2xl font-bold text-primary-600">EduReddit</span>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="/" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+            <a href="/profile" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Profile</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <div class="px-4 py-6 sm:px-0">
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+          <div class="flex flex-col md:flex-row">
+            <!-- Sidebar Navigation -->
+            <div class="bg-gray-50 md:w-64 lg:w-80 flex-shrink-0 border-r border-gray-200">
+              <div class="p-6 sticky top-0">
+                <h2 class="text-xl font-semibold text-gray-900 mb-6">Profile Settings</h2>
+                <nav class="space-y-1">
+                  <button id="personalTab" class="w-full text-left px-4 py-3 rounded-lg bg-primary-50 text-primary-700 font-medium flex items-center transition-all hover:bg-primary-100">
+                    <span class="material-symbols-outlined mr-3">person</span> Personal Information
+                  </button>
+                  <button id="educationTab" class="w-full text-left px-4 py-3 rounded-lg text-gray-700 font-medium flex items-center transition-all hover:bg-gray-100">
+                    <span class="material-symbols-outlined mr-3">school</span> Education
+                  </button>
+                  <button id="experienceTab" class="w-full text-left px-4 py-3 rounded-lg text-gray-700 font-medium flex items-center transition-all hover:bg-gray-100">
+                    <span class="material-symbols-outlined mr-3">work</span> Experience
+                  </button>
+                  <button id="skillsTab" class="w-full text-left px-4 py-3 rounded-lg text-gray-700 font-medium flex items-center transition-all hover:bg-gray-100">
+                    <span class="material-symbols-outlined mr-3">star</span> Skills & Expertise
+                  </button>
+                  <button id="socialTab" class="w-full text-left px-4 py-3 rounded-lg text-gray-700 font-medium flex items-center transition-all hover:bg-gray-100">
+                    <span class="material-symbols-outlined mr-3">link</span> Social Links
+                  </button>
+                  
+                </nav>
+              </div>
+            </div>
+
+            <!-- Form Content -->
+            <div class="flex-1 p-6 md:p-8">
+              <form method="POST" enctype="multipart/form-data" class="space-y-8">
+                {% csrf_token %}
+                
+                <!-- Personal Information Section -->
+                <div id="personalForm" class="animate-fadeIn">
+                  <div class="mb-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Personal Information</h1>
+                    <p class="text-gray-600 mt-2">Update your personal details and profile picture</p>
+                  </div>
+
+                  <!-- Profile Photo Upload -->
+                  <div class="flex flex-col items-center sm:flex-row sm:items-start gap-6 mb-6">
+                    <div class="relative">
+                      <div class="w-32 h-32 rounded-full bg-gray-200 overflow-hidden border-4 border-white shadow-lg">
+                        {% if profile.profile_photo %}
+                          <img id="profilePreview" src="{{ profile.profile_photo.url }}" alt="Profile" class="w-full h-full object-cover">
+                        {% else %}
+                          <img id="profilePreview" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Profile" class="w-full h-full object-cover">
+                        {% endif %}
+                      </div>
+                      <label for="profile_photo" class="absolute bottom-0 right-0 bg-primary-600 text-white p-2 rounded-full shadow-lg hover:bg-primary-700 transition-all cursor-pointer">
+                        <span class="material-symbols-outlined text-sm">photo_camera</span>
+                        <input type="file" id="profile_photo" name="profile_photo" accept="image/*" class="hidden" onchange="previewImage(this)">
+                      </label>
+                    </div>
+                    <div class="sm:flex-1">
+                      <h3 class="text-lg font-medium text-gray-900 mb-2">Profile Picture</h3>
+                      <p class="text-gray-600 text-sm mb-4">Upload a clear photo (JPG, PNG, max 5MB)</p>
+                      <div class="flex gap-3 flex-wrap">
+                        <label for="profile_photo" class="px-4 py-2 bg-primary-600 text-white rounded-md text-sm font-medium hover:bg-primary-700 transition-colors cursor-pointer">
+                          Upload Photo
+                        </label>
+                        <button type="button" onclick="removePhoto()" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md text-sm font-medium hover:bg-gray-300 transition-colors">
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Personal Details -->
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label for="first_name" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                      <input type="text" id="first_name" name="first_name" value="{{ profile.first_name }}" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                    </div>
+                    <div>
+                      <label for="last_name" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                      <input type="text" id="last_name" name="last_name" value="{{ profile.last_name }}" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                    </div>
+                    <div>
+                      <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                      <input type="email" id="email" name="email" value="{{ user.email }}" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                    </div>
+                    <div>
+                      <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                      <input type="tel" id="phone" name="phone" value="{{ profile.phone }}" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                    </div>
+                  </div>
+
+                  <!-- Bio -->
+                  <div class="mt-6">
+                    <label for="bio" class="block text-sm font-medium text-gray-700 mb-2">Professional Bio</label>
+                    <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself, your expertise, and what you're passionate about..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">{{ profile.bio }}</textarea>
+                    <p class="text-sm text-gray-500 mt-2">This will be displayed on your public profile</p>
+                  </div>
+                </div>
+
+                <!-- Education Section -->
+                <div id="educationForm" class="animate-fadeIn hidden">
+                  <div class="mb-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Education</h1>
+                    <p class="text-gray-600 mt-2">Add your educational background and qualifications</p>
+                  </div>
+
+                  <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label for="qualification" class="block text-sm font-medium text-gray-700 mb-2">Highest Qualification</label>
+                        <select id="qualification" name="qualification" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                          <option value="">Select qualification</option>
+                          <option value="highschool" {% if profile.qualification == 'highschool' %}selected{% endif %}>High School</option>
+                          <option value="bachelor" {% if profile.qualification == 'bachelor' %}selected{% endif %}>Bachelor's Degree</option>
+                          <option value="master" {% if profile.qualification == 'master' %}selected{% endif %}>Master's Degree</option>
+                          <option value="phd" {% if profile.qualification == 'phd' %}selected{% endif %}>PhD</option>
+                          <option value="diploma" {% if profile.qualification == 'diploma' %}selected{% endif %}>Diploma</option>
+                          <option value="certificate" {% if profile.qualification == 'certificate' %}selected{% endif %}>Certificate</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label for="field_of_study" class="block text-sm font-medium text-gray-700 mb-2">Field of Study</label>
+                        <input type="text" id="field_of_study" name="field_of_study" value="{{ profile.field_of_study }}" placeholder="e.g., Computer Science" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                      </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label for="university" class="block text-sm font-medium text-gray-700 mb-2">University/Institution</label>
+                        <input type="text" id="university" name="university" value="{{ profile.university }}" placeholder="e.g., Stanford University" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                      </div>
+                      <div>
+                        <label for="graduation_year" class="block text-sm font-medium text-gray-700 mb-2">Graduation Year</label>
+                        <select id="graduation_year" name="graduation_year" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                          <option value="">Select year</option>
+                          {% for year in years %}
+                          <option value="{{ year }}" {% if profile.graduation_year == year %}selected{% endif %}>{{ year }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Experience Section -->
+                <div id="experienceForm" class="animate-fadeIn hidden">
+                  <div class="mb-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Professional Experience</h1>
+                    <p class="text-gray-600 mt-2">Add your work experience and professional background</p>
+                  </div>
+
+                  <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label for="job_title" class="block text-sm font-medium text-gray-700 mb-2">Current Position</label>
+                        <input type="text" id="job_title" name="job_title" value="{{ profile.job_title }}" placeholder="e.g., Senior Software Engineer" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                      </div>
+                      <div>
+                        <label for="company" class="block text-sm font-medium text-gray-700 mb-2">Company/Organization</label>
+                        <input type="text" id="company" name="company" value="{{ profile.company }}" placeholder="e.g., Google" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                      </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label for="experience_years" class="block text-sm font-medium text-gray-700 mb-2">Years of Experience</label>
+                        <input type="number" id="experience_years" name="experience_years" value="{{ profile.experience_years }}" min="0" max="50" placeholder="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                      </div>
+                      <div>
+                        <label for="industry" class="block text-sm font-medium text-gray-700 mb-2">Industry</label>
+                        <select id="industry" name="industry" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                          <option value="">Select industry</option>
+                          <option value="technology" {% if profile.industry == 'technology' %}selected{% endif %}>Technology</option>
+                          <option value="education" {% if profile.industry == 'education' %}selected{% endif %}>Education</option>
+                          <option value="healthcare" {% if profile.industry == 'healthcare' %}selected{% endif %}>Healthcare</option>
+                          <option value="finance" {% if profile.industry == 'finance' %}selected{% endif %}>Finance</option>
+                          <option value="research" {% if profile.industry == 'research' %}selected{% endif %}>Research</option>
+                          <option value="other" {% if profile.industry == 'other' %}selected{% endif %}>Other</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div id="skillsForm" class="animate-fadeIn hidden">
+                  <div class="mb-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Skills & Expertise</h1>
+                    <p class="text-gray-600 mt-2">Add your technical and professional skills</p>
+                  </div>
+
+                  <div class="space-y-6">
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Your Skills</label>
+                      <div id="skillsContainer" class="flex flex-wrap gap-2 mb-4">
+                        {% for skill in profile.get_skills_list %}
+                        <span class="bg-primary-100 text-primary-700 px-3 py-1 rounded-full text-sm flex items-center">
+                          {{ skill }}
+                          <button type="button" class="ml-1 text-primary-500 hover:text-primary-700 remove-skill" data-skill="{{ skill }}">×</button>
+                        </span>
+                        {% endfor %}
+                      </div>
+                      <div class="flex gap-2">
+                        <input type="text" id="newSkill" placeholder="Add a skill (e.g., Python, React, Data Analysis)" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                        <button type="button" onclick="addSkill()" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">Add</button>
+                      </div>
+                      <input type="hidden" id="skills" name="skills" value="{{ profile.skills }}">
+                    </div>
+
+                    <div>
+                      <label for="learning_interests" class="block text-sm font-medium text-gray-700 mb-2">Learning Interests</label>
+                      <textarea id="learning_interests" name="learning_interests" rows="3" placeholder="What are you currently learning or interested in learning?" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">{{ profile.learning_interests }}</textarea>
+                    </div>
+
+                    <div>
+                      <label for="career_goal" class="block text-sm font-medium text-gray-700 mb-2">Career Goals</label>
+                      <textarea id="career_goal" name="career_goal" rows="3" placeholder="What are your career aspirations and goals?" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">{{ profile.career_goal }}</textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Social Links Section -->
+                <div id="socialForm" class="animate-fadeIn hidden">
+                  <div class="mb-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Social Links</h1>
+                    <p class="text-gray-600 mt-2">Connect your social profiles and online presence</p>
+                  </div>
+
+                  <div class="space-y-6">
+                    <div>
+                      <label for="linkedin_url" class="block text-sm font-medium text-gray-700 mb-2">LinkedIn Profile</label>
+                      <div class="flex items-center">
+                        <span class="material-symbols-outlined mr-3 text-gray-500">link</span>
+                        <input type="url" id="linkedin_url" name="linkedin_url" value="{{ profile.linkedin_url }}" placeholder="https://linkedin.com/in/yourname" class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                      </div>
+                    </div>
+
+                    <div>
+                      <label for="github_url" class="block text-sm font-medium text-gray-700 mb-2">GitHub Profile</label>
+                      <div class="flex items-center">
+                        <span class="material-symbols-outlined mr-3 text-gray-500">code</span>
+                        <input type="url" id="github_url" name="github_url" value="{{ profile.github_url }}" placeholder="https://github.com/yourusername" class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                      </div>
+                    </div>
+
+                    <div>
+                      <label for="portfolio_url" class="block text-sm font-medium text-gray-700 mb-2">Portfolio Website</label>
+                      <div class="flex items-center">
+                        <span class="material-symbols-outlined mr-3 text-gray-500">language</span>
+                        <input type="url" id="portfolio_url" name="portfolio_url" value="{{ profile.portfolio_url }}" placeholder="https://yourportfolio.com" class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              
+                
+
+                <!-- Form Actions -->
+                <div class="flex justify-between items-center pt-8 border-t border-gray-200">
+                  <div>
+                    <span class="text-sm text-gray-500">Last updated: {% now "F j, Y" %}</span>
+                  </div>
+                  <div class="flex gap-3">
+                    <button type="button" class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                      Cancel
+                    </button>
+                    <button type="submit" class="px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors">
+                      Save Changes
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#f3f1ff',
+              100: '#e9e5ff',
+              200: '#d5cfff',
+              300: '#b7a9ff',
+              400: '#9478ff',
+              500: '#7341ff',
+              600: '#631bff',
+              700: '#611bf8',
+              800: '#4607d0',
+              900: '#3c08aa',
+              DEFAULT: '#611bf8'
+            }
+          }
+        }
+      }
+    };
+
+    // Tab switching functionality
+    const tabs = {
+      personal: document.getElementById('personalTab'),
+      education: document.getElementById('educationTab'),
+      experience: document.getElementById('experienceTab'),
+      skills: document.getElementById('skillsTab'),
+      social: document.getElementById('socialTab'),
+      
+    };
+
+    const forms = {
+      personal: document.getElementById('personalForm'),
+      education: document.getElementById('educationForm'),
+      experience: document.getElementById('experienceForm'),
+      skills: document.getElementById('skillsForm'),
+      social: document.getElementById('socialForm'),
+      
+    };
+
+    function switchTab(activeTab) {
+      // Update tab styles
+      Object.keys(tabs).forEach(tabKey => {
+        const tab = tabs[tabKey];
+        const isActive = tabKey === activeTab;
+        tab.classList.toggle('bg-primary-50', isActive);
+        tab.classList.toggle('text-primary-700', isActive);
+        tab.classList.toggle('bg-gray-100', !isActive);
+        tab.classList.toggle('text-gray-700', !isActive);
+      });
+
+      // Show/hide forms
+      Object.keys(forms).forEach(formKey => {
+        const form = forms[formKey];
+        form.classList.toggle('hidden', formKey !== activeTab);
+      });
+    }
+
+    // Add click event listeners to tabs
+    Object.keys(tabs).forEach(tabKey => {
+      tabs[tabKey].addEventListener('click', () => switchTab(tabKey));
+    });
+
+    // Image preview functionality
+    function previewImage(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('profilePreview').src = e.target.result;
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function removePhoto() {
+      document.getElementById('profilePreview').src = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
+      document.getElementById('profile_photo').value = '';
+    }
+
+    // Skills management
+    let skills = [];
+
+    function updateSkillsDisplay() {
+      const container = document.getElementById('skillsContainer');
+      container.innerHTML = '';
+      
+      skills.forEach(skill => {
+        const skillElement = document.createElement('span');
+        skillElement.className = 'bg-primary-100 text-primary-700 px-3 py-1 rounded-full text-sm flex items-center';
+        skillElement.innerHTML = `${skill} <button type="button" class="ml-1 text-primary-500 hover:text-primary-700 remove-skill" data-skill="${skill}">×</button>`;
+        container.appendChild(skillElement);
+      });
+
+      // Add remove event listeners
+      document.querySelectorAll('.remove-skill').forEach(button => {
+        button.addEventListener('click', function() {
+          const skillToRemove = this.getAttribute('data-skill');
+          skills = skills.filter(s => s !== skillToRemove);
+          document.getElementById('skills').value = skills.join(',');
+          updateSkillsDisplay();
+        });
+      });
+    }
+
+    function addSkill() {
+      const input = document.getElementById('newSkill');
+      const skill = input.value.trim();
+      
+      if (skill && !skills.includes(skill)) {
+        skills.push(skill);
+        document.getElementById('skills').value = skills.join(',');
+        input.value = '';
+        updateSkillsDisplay();
+      }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize skills from hidden input
+      const skillsInput = document.getElementById('skills');
+      if (skillsInput && skillsInput.value) {
+        skills = skillsInput.value.split(',').filter(skill => skill.trim() !== '');
+      }
+      
+      updateSkillsDisplay();
+      switchTab('personal');
+      
+      // Generate years for graduation dropdown
+      const currentYear = new Date().getFullYear();
+      const yearSelect = document.getElementById('graduation_year');
+      for (let year = currentYear; year >= currentYear - 50; year--) {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearSelect.appendChild(option);
+      }
+    });
+  </script>
+</body>
+</html>

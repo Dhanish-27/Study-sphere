@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Management Form</title>
+  <style>
+    @import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
+    @import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
+    @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined);
+  </style>
+</head>
+
+<body>
+  <div id="webcrumbs">
+    <div class="flex h-screen bg-gray-100">
+      <div class="w-64 bg-white shadow-lg">
+        <div class="p-6">
+          <h1 class="text-2xl font-bold text-primary-600">Dashboard</h1>
+          <p class="text-sm text-gray-500 mt-1">Content Management</p>
+        </div>
+        <nav class="mt-6">
+          <div id="languageTab"
+            class="flex items-center px-6 py-4 cursor-pointer hover:bg-primary-50 transition-colors border-l-4 border-transparent">
+            <span class="material-symbols-outlined mr-3">language</span> <span class="font-medium">Language</span>
+          </div>
+          <div id="domainTab"
+            class="flex items-center px-6 py-4 cursor-pointer hover:bg-primary-50 transition-colors border-l-4 border-primary-500 bg-primary-50">
+            <span class="material-symbols-outlined mr-3">domain</span> <span class="font-medium">Domain</span>
+          </div>
+          <div id="categoryTab"
+            class="flex items-center px-6 py-4 cursor-pointer hover:bg-primary-50 transition-colors border-l-4 border-transparent">
+            <span class="material-symbols-outlined mr-3">category</span> <span class="font-medium">Category</span>
+          </div>
+          <div id="videoTab"
+            class="flex items-center px-6 py-4 cursor-pointer hover:bg-primary-50 transition-colors border-l-4 border-transparent">
+            <span class="material-symbols-outlined mr-3">videocam</span> <span class="font-medium">Video</span>
+          </div>
+        </nav>
+      </div>
+      <div class="flex-1 p-8 overflow-auto">
+        <!-- Language Form -->
+        <div id="languageForm" class="bg-white rounded-lg shadow-md p-6 hidden">
+          <h2 class="text-xl font-semibold mb-6 flex items-center">
+            <span class="material-symbols-outlined mr-2 text-primary-500">language</span>
+            Language Management
+          </h2>
+          <form class="space-y-4" method="post" action="{% url 'add_language' %}">
+            {% csrf_token %}
+            <div>
+              <label class="block text-sm font-medium mb-1" for="languageName">Language Name</label>
+              <input type="text" id="languageName" name="language"
+                class="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors"
+                placeholder="Enter language name (e.g., Java, Python, JavaScript)" />
+            </div>
+            <div class="pt-2">
+              <button type="submit"
+                class="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-6 rounded-md transition-colors">
+                Submit Language
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Domain Form -->
+        <div id="domainForm" class="bg-white rounded-lg shadow-md p-6 hidden">
+          <h2 class="text-xl font-semibold mb-6 flex items-center">
+            <span class="material-symbols-outlined mr-2 text-primary-500">domain</span>
+            Domain Management
+          </h2>
+          <form class="space-y-4" method="post" action="{% url 'add_domain' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+              <label class="block text-sm font-medium mb-1" for="selectLanguage">Select Language</label>
+              <select id="selectLanguage" name="domain_language"
+                class="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-primary-500 focus:ring-1">
+                <option value="" disabled selected>Select a language</option>
+                {% if language %}
+                {% for lang in language %}
+                <option value="{{lang.id}}">{{lang.name}}</option>
+                {% endfor %}
+                {% endif %}
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1" for="domainName">Domain Name</label>
+              <input type="text" id="domainName" name="domain_name"
+                class="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-primary-500 focus:ring-1"
+                placeholder="Enter domain name" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1" for="description">Description</label>
+              <textarea id="description" name="domain_desc" rows="4"
+                class="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-primary-500 focus:ring-1"
+                placeholder="Enter domain description"></textarea>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1" for="thumbnail">Thumbnail</label>
+              <input id="thumbnail" name="domain_thumbnail" type="file"
+                class="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-primary-500" />
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium mb-1" for="totalVideos">Total Videos</label>
+                <input type="number" id="totalVideos" name="total_videos"
+                  class="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-primary-500" placeholder="0" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1" for="totalHours">Total Hours</label>
+                <input type="text" id="totalHours" name="total_hours"
+                  class="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-primary-500"
+                  placeholder="e.g. 18 hours" />
+              </div>
+            </div>
+            <div class="pt-2">
+              <button type="submit"
+                class="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-6 rounded-md">
+                Submit Domain
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Category Form -->
+        <div id="categoryForm" class="bg-white rounded-lg shadow-md p-6 hidden">
+          <h2 class="text-xl font-semibold mb-6 flex items-center">
+            <span class="material-symbols-outlined mr-2 text-primary-500">category</span>
+            Category Management
+          </h2>
+          <form class="space-y-4" method="post" action="{% url 'add_category' %}">
+            {% csrf_token %}
+            <div>
+              <label class="block text-sm font-medium mb-1" for="selectDomain">Select Domain</label>
+              <select id="selectDomain" name="domain"
+                class="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-primary-500">
+                <option value="" disabled selected>Select a domain</option>
+                {% if domain %}
+                {% for dom in domains %}
+                <option value="{{dom.id}}">{{dom.name}}</option>
+                {% endfor %}
+                {% endif %}
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1" for="categoryName">Category Name</label>
+              <input type="text" id="categoryName" name="name"
+                class="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-primary-500"
+                placeholder="Enter category name" />
+            </div>
+            <div class="pt-2">
+              <button type="submit"
+                class="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-6 rounded-md">
+                Submit Category
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Video Form -->
+        <div id="videoForm" class="bg-white rounded-lg shadow-md p-6 hidden">
+          <h2 class="text-xl font-semibold mb-6 flex items-center">
+            <span class="material-symbols-outlined mr-2 text-primary-500">videocam</span>
+            Video Management
+          </h2>
+          <form class="space-y-4" method="post" action="{% url 'add_video' %}">
+            {% csrf_token %}
+            <div>
+              <label class="block text-sm font-medium mb-1" for="selectCategory">Select Category</label>
+              <select id="selectCategory" name="category"
+                class="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-primary-500">
+                <option value="" disabled selected>Select a category</option>
+                {% if categories %}
+                {% for cat in categories %}
+                <option value="{{cat.id}}">{{cat.name}}</option>
+                {% endfor %}
+                {% endif %}
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1" for="videoTitle">Video Title</label>
+              <input type="text" id="videoTitle" name="title"
+                class="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-primary-500"
+                placeholder="Enter video title" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1" for="youtubeUrl">YouTube URL</label>
+              <input type="url" id="youtubeUrl" name="youtube_url"
+                class="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-primary-500"
+                placeholder="https://youtube.com/watch?v=..." />
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium mb-1" for="videoCount">Video Count</label>
+                <input type="number" id="videoCount" name="video_count"
+                  class="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-primary-500" placeholder="0" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1" for="duration">Duration</label>
+                <input type="text" id="duration" name="duration"
+                  class="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-primary-500"
+                  placeholder="e.g. 2 hours" />
+              </div>
+            </div>
+            <div class="pt-2">
+              <button type="submit"
+                class="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-6 rounded-md">
+                Submit Video
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      content: ["./src/**/*.{html,js}"],
+      theme: { "name": "Bluewave", "fontFamily": { "sans": ["Open Sans", "ui-sans-serif", "system-ui", "sans-serif", "\"Apple Color Emoji\"", "\"Segoe UI Emoji\"", "\"Segoe UI Symbol\"", "\"Noto Color Emoji\""] }, "extend": { "fontFamily": { "title": ["Lato", "ui-sans-serif", "system-ui", "sans-serif", "\"Apple Color Emoji\"", "\"Segoe UI Emoji\"", "\"Segoe UI Symbol\"", "\"Noto Color Emoji\""], "body": ["Open Sans", "ui-sans-serif", "system-ui", "sans-serif", "\"Apple Color Emoji\"", "\"Segoe UI Emoji\"", "\"Segoe UI Symbol\"", "\"Noto Color Emoji\""] }, "colors": { "neutral": { "50": "#f7f7f7", "100": "#eeeeee", "200": "#e0e0e0", "300": "#cacaca", "400": "#b1b1b1", "500": "#999999", "600": "#7f7f7f", "700": "#676767", "800": "#545454", "900": "#464646", "950": "#282828" }, "primary": { "50": "#f3f1ff", "100": "#e9e5ff", "200": "#d5cfff", "300": "#b7a9ff", "400": "#9478ff", "500": "#7341ff", "600": "#631bff", "700": "#611bf8", "800": "#4607d0", "900": "#3c08aa", "950": "#220174", "DEFAULT": "#611bf8" } } }, "fontSize": { "xs": ["12px", { "lineHeight": "19.200000000000003px" }], "sm": ["14px", { "lineHeight": "21px" }], "base": ["16px", { "lineHeight": "25.6px" }], "lg": ["18px", { "lineHeight": "27px" }], "xl": ["20px", { "lineHeight": "28px" }], "2xl": ["24px", { "lineHeight": "31.200000000000003px" }], "3xl": ["30px", { "lineHeight": "36px" }], "4xl": ["36px", { "lineHeight": "41.4px" }], "5xl": ["48px", { "lineHeight": "52.800000000000004px" }], "6xl": ["60px", { "lineHeight": "66px" }], "7xl": ["72px", { "lineHeight": "75.60000000000001px" }], "8xl": ["96px", { "lineHeight": "100.80000000000001px" }], "9xl": ["128px", { "lineHeight": "134.4px" }] }, "borderRadius": { "none": "0px", "sm": "6px", "DEFAULT": "12px", "md": "18px", "lg": "24px", "xl": "36px", "2xl": "48px", "3xl": "72px", "full": "9999px" }, "spacing": { "0": "0px", "1": "4px", "2": "8px", "3": "12px", "4": "16px", "5": "20px", "6": "24px", "7": "28px", "8": "32px", "9": "36px", "10": "40px", "11": "44px", "12": "48px", "14": "56px", "16": "64px", "20": "80px", "24": "96px", "28": "112px", "32": "128px", "36": "144px", "40": "160px", "44": "176px", "48": "192px", "52": "208px", "56": "224px", "60": "240px", "64": "256px", "72": "288px", "80": "320px", "96": "384px", "px": "1px", "0.5": "2px", "1.5": "6px", "2.5": "10px", "3.5": "14px" } },
+      plugins: [],
+      important: '#webcrumbs'
+    };
+
+    // Tab switching functionality
+    const tabs = {
+      language: document.getElementById('languageTab'),
+      domain: document.getElementById('domainTab'),
+      category: document.getElementById('categoryTab'),
+      video: document.getElementById('videoTab')
+    };
+
+    const forms = {
+      language: document.getElementById('languageForm'),
+      domain: document.getElementById('domainForm'),
+      category: document.getElementById('categoryForm'),
+      video: document.getElementById('videoForm')
+    };
+
+    // Function to switch between domain, category, and video tabs
+    function switchTab(activeTab) {
+      // Update tab styles
+      Object.keys(tabs).forEach(tabKey => {
+        const tab = tabs[tabKey];
+        const isActive = tabKey === activeTab;
+        tab.classList.toggle('border-primary-500', isActive);
+        tab.classList.toggle('bg-primary-50', isActive);
+        tab.classList.toggle('border-transparent', !isActive);
+      });
+
+      // Show/hide forms
+      Object.keys(forms).forEach(formKey => {
+        const form = forms[formKey];
+        form.classList.toggle('hidden', formKey !== activeTab);
+      });
+    }
+
+    // Add click event listeners to tabs
+    Object.keys(tabs).forEach(tabKey => {
+      tabs[tabKey].addEventListener('click', () => switchTab(tabKey));
+    });
+
+    // Initialize with language tab active
+    switchTab('language');
+
+    // Add touch support for mobile devices
+    Object.keys(tabs).forEach(tabKey => {
+      tabs[tabKey].addEventListener('touchstart', () => switchTab(tabKey));
+    });
+
+    // Add keyboard navigation support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab' && e.shiftKey) {
+        e.preventDefault();
+        const currentActive = Object.keys(forms).find(key => !forms[key].classList.contains('hidden'));
+        const keys = Object.keys(forms);
+        const currentIndex = keys.indexOf(currentActive);
+        const nextIndex = (currentIndex - 1 + keys.length) % keys.length;
+        switchTab(keys[nextIndex]);
+      } else if (e.key === 'Tab' && !e.shiftKey) {
+        e.preventDefault();
+        const currentActive = Object.keys(forms).find(key => !forms[key].classList.contains('hidden'));
+        const keys = Object.keys(forms);
+        const currentIndex = keys.indexOf(currentActive);
+        const nextIndex = (currentIndex + 1) % keys.length;
+        switchTab(keys[nextIndex]);
+      }
+    });
+  </script>
+
+</body>
+
+</html>

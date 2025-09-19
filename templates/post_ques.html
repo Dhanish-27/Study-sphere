@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ask a Question</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #dae0e6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        textarea {
+            resize: vertical;
+            height: 150px;
+        }
+        button {
+            margin-top: 20px;
+            background-color: #0079d3;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #005999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Ask a Question</h2>
+        <form action="/ask" method="post">
+            {% csrf_token %}
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" required />
+
+            <label for="body">Body</label>
+            <textarea id="body" name="body" required></textarea>
+
+            <button type="submit">Submit Question</button>
+        </form>
+    </div>
+</body>
+</html>

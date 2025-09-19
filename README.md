@@ -1,4 +1,4 @@
-# [PROJECT_NAME]
+# [STUDY SPHERE]
 
 **A Reddit-like educational community where students post questions, share projects & videos, upload resumes, and form topic-specific communities.**
 

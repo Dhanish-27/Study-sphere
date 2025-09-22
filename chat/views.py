@@ -94,7 +94,6 @@ def add_language(request):
         lang_name = request.POST.get("language")   
         if lang_name:
             Language.objects.create(name=lang_name)
-            Language.save()
         return redirect("add_language")
     return render(request, "course form.html",{"language":language,"domains":domains,"categories":categories})
 

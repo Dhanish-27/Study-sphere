@@ -1,0 +1,217 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}EduHub - Learning Platform{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com/3.3.0"></script>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+  <div id="webcrumbs">
+    <div class="min-h-screen bg-gray-50 flex flex-col">
+      <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <h1 class="text-2xl font-bold text-primary-600">EduHub</h1>
+            <div class="hidden md:block relative w-64"> 
+              <input type="text" id="search-input" placeholder="Search for anything..."
+                class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" />
+              <span class="material-symbols-outlined absolute left-3 top-2.5 text-gray-400">search</span>
+            </div>
+          </div>
+          <div class="flex items-center space-x-3"> 
+            {% if user.is_authenticated %}
+              <button class="p-2 rounded-full hover:bg-gray-100 transition-colors"> 
+                <span class="material-symbols-outlined">notifications</span> 
+              </button> 
+              <button class="p-2 rounded-full hover:bg-gray-100 transition-colors"> 
+                <span class="material-symbols-outlined">mail</span> 
+              </button> 
+              <a href="{% url 'profile_page' %}" class="flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                <div class="h-8 w-8 rounded-full bg-primary-200 flex items-center justify-center text-primary-700 font-medium">
+                  {{ user.username|first|upper }}
+                </div>
+                <span class="hidden md:block">{{ user.username }}</span>
+              </a>
+              <a href="{% url 'logout_user' %}" class="text-gray-600 hover:text-gray-900">
+                <span class="material-symbols-outlined">logout</span>
+              </a>
+            {% else %}
+              <a href="{% url 'login_user' %}" class="btn btn-primary">Login</a>
+              <a href="{% url 'register_user' %}" class="btn btn-outline">Sign Up</a>
+            {% endif %}
+          </div>
+        </div>
+      </header>
+
+      <main class="flex-1 container mx-auto px-4 py-6 flex flex-col md:flex-row gap-6">
+        {% if user.is_authenticated %}
+        <aside class="hidden md:block w-full md:w-64 space-y-6 self-start sticky top-20">
+          <div class="bg-white rounded-lg shadow-sm p-4">
+            <h2 class="font-semibold text-lg mb-3">Quick Actions</h2>
+            <div class="space-y-2">
+              <a href="{% url 'Add a question' %}" class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100 transition-colors">
+                <span class="material-symbols-outlined mr-3 text-blue-500">help</span> <span>Ask Question</span>
+              </a>
+              <a href="{% url 'posts' %}" class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100 transition-colors">
+                <span class="material-symbols-outlined mr-3 text-green-500">edit_note</span> <span>Create Post</span>
+              </a>
+              <a href="{% url 'project_videos' %}" class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100 transition-colors">
+                <span class="material-symbols-outlined mr-3 text-purple-500">lightbulb</span> <span>Share Project</span>
+              </a>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-sm p-4">
+            <h2 class="font-semibold text-lg mb-3">My Content</h2>
+            <ul class="space-y-2">
+              <li class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100 transition-colors">
+                <a href="{% url 'profile_page' %}" class="flex items-center w-full">
+                  <span class="material-symbols-outlined mr-3">person</span> <span>Profile</span>
+                </a>
+              </li>
+              <li class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100 transition-colors">
+                <a href="{% url 'my_projects' %}" class="flex items-center w-full">
+                  <span class="material-symbols-outlined mr-3">lightbulb</span> <span>My Projects</span>
+                </a>
+              </li>
+              <li class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100 transition-colors">
+                <a href="{% url 'my_posts' %}" class="flex items-center w-full">
+                  <span class="material-symbols-outlined mr-3">menu_book</span> <span>My Posts</span>
+                </a>
+              </li>
+              <li class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100 transition-colors">
+                <a href="{% url 'my_courses' %}" class="flex items-center w-full">
+                  <span class="material-symbols-outlined mr-3">school</span> <span>My Courses</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+        {% endif %}
+        
+        <div class="flex-1 space-y-6">
+          {% if user.is_authenticated %}
+          <div class="bg-white rounded-lg shadow-sm p-4">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="h-10 w-10 rounded-full bg-primary-200 flex items-center justify-center text-primary-700 font-medium">
+                {{ user.username|first|upper }}
+              </div> 
+              <input type="text" placeholder="What's on your mind?" 
+                class="flex-1 bg-gray-100 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500" 
+                onclick="window.location.href='{% url 'Add a question' %}'" />
+            </div>
+            <div class="flex justify-between border-t pt-3"> 
+              <a href="{% url 'Add a question' %}" class="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-100 transition-colors"> 
+                <span class="material-symbols-outlined text-blue-500">help</span> <span>Ask</span> 
+              </a> 
+              <a href="{% url 'project_videos' %}" class="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-100 transition-colors"> 
+                <span class="material-symbols-outlined text-green-500">lightbulb</span> <span>Share Project</span>
+              </a> 
+              <a href="{% url 'posts' %}" class="flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-100 transition-colors"> 
+                <span class="material-symbols-outlined text-purple-500">edit_note</span> <span>Post</span> 
+              </a>
+            </div>
+          </div>
+          {% endif %}
+          
+          {% block content %}
+          {% endblock %}
+        </div>
+
+        {% if user.is_authenticated %}
+        <aside class="hidden lg:block w-80 space-y-6 self-start sticky top-20">
+          {% block sidebar_right %}
+          <div class="bg-white rounded-lg shadow-sm p-4">
+            <div class="flex justify-between items-center mb-3">
+              <h2 class="font-semibold text-lg">Notifications</h2> 
+              <span class="px-2 py-0.5 bg-primary-100 text-primary-700 rounded-full text-xs font-medium">3 new</span>
+            </div>
+            <ul class="space-y-3">
+              <li class="flex gap-3 p-2 rounded-md bg-blue-50"> 
+                <span class="material-symbols-outlined text-blue-500 mt-0.5">forum</span>
+                <div>
+                  <p class="text-sm"><span class="font-medium">Sarah</span> replied to your question about calculus</p>
+                  <p class="text-xs text-gray-500">5 minutes ago</p>
+                </div>
+              </li>
+              <li class="flex gap-3 p-2 rounded-md bg-green-50"> 
+                <span class="material-symbols-outlined text-green-500 mt-0.5">favorite</span>
+                <div>
+                  <p class="text-sm">Your project received 10+ upvotes</p>
+                  <p class="text-xs text-gray-500">1 hour ago</p>
+                </div>
+              </li>
+              <li class="flex gap-3 p-2 rounded-md hover:bg-gray-100 transition-colors"> 
+                <span class="material-symbols-outlined text-gray-500 mt-0.5">person_add</span>
+                <div>
+                  <p class="text-sm"><span class="font-medium">Dr. Reynolds</span> followed you</p>
+                  <p class="text-xs text-gray-500">Yesterday</p>
+                </div>
+              </li>
+            </ul> 
+            <button class="w-full mt-3 text-sm text-primary-600 hover:text-primary-700 transition-colors">See all notifications</button>
+          </div>
+          
+          <div class="bg-white rounded-lg shadow-sm p-4">
+            <h2 class="font-semibold text-lg mb-3">Top Contributors</h2>
+            <ul class="space-y-3">
+              <li class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="relative">
+                    <div class="h-10 w-10 rounded-full bg-indigo-200 flex items-center justify-center text-indigo-700 font-medium">PT</div>
+                    <div class="absolute -top-1 -right-1 h-5 w-5 bg-yellow-400 rounded-full flex items-center justify-center text-xs text-white font-bold">1</div>
+                  </div>
+                  <div>
+                    <div class="font-medium">Prof. Taylor</div>
+                    <div class="text-xs text-gray-500">Physics • 3240 points</div>
+                  </div>
+                </div> 
+                <button class="text-xs text-primary-600 hover:text-primary-700 transition-colors">Follow</button>
+              </li>
+            </ul> 
+            <button class="w-full mt-3 text-sm text-primary-600 hover:text-primary-700 transition-colors">View leaderboard</button>
+          </div>
+          {% endblock %}
+        </aside>
+        {% endif %}
+      </main>
+
+      <!-- Mobile Navigation -->
+      {% if user.is_authenticated %}
+      <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t py-2 px-6 flex justify-between items-center z-10">
+        <a href="/" class="flex flex-col items-center text-primary-600"> 
+          <span class="material-symbols-outlined">home</span>
+          <span class="text-xs mt-1">Home</span> 
+        </a> 
+        <button class="flex flex-col items-center text-gray-500 hover:text-primary-600 transition-colors"> 
+          <span class="material-symbols-outlined">search</span> 
+          <span class="text-xs mt-1">Explore</span> 
+        </button> 
+        <a href="{% url 'Add a question' %}" class="flex flex-col items-center text-gray-500 hover:text-primary-600 transition-colors"> 
+          <span class="material-symbols-outlined">add_circle</span> 
+          <span class="text-xs mt-1">Create</span> 
+        </a>
+        <button class="flex flex-col items-center text-gray-500 hover:text-primary-600 transition-colors"> 
+          <span class="material-symbols-outlined">notifications</span> 
+          <span class="text-xs mt-1">Alerts</span> 
+        </button>
+        <a href="{% url 'profile_page' %}" class="flex flex-col items-center text-gray-500 hover:text-primary-600 transition-colors"> 
+          <span class="material-symbols-outlined">person</span> 
+          <span class="text-xs mt-1">Profile</span> 
+        </a>
+      </nav>
+      {% endif %}
+    </div>
+  </div>
+
+  <script src="{% static 'js/main.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

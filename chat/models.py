@@ -28,6 +28,7 @@ class UserProfile(models.Model):
     skills = models.TextField(blank=True)  # Store as comma-separated values
     learning_interests = models.TextField(blank=True)
     career_goal = models.TextField(blank=True)
+    certifications = models.IntegerField(default=0)  # Number of certifications, default 0
     
     def __str__(self):
         return f"{self.user.username}'s Profile"

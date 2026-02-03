@@ -1,0 +1,197 @@
+{% extends "base_new.html" %}
+
+{% block title %}Home - EduHub{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+  <!-- Filter Tabs -->
+  <div class="bg-white rounded-lg shadow-sm p-2 flex overflow-x-auto scrollbar-hide">
+    <button class="flex items-center gap-1 px-4 py-2 rounded-md bg-primary-100 text-primary-700 mr-2"> 
+      <span class="material-symbols-outlined">local_fire_department</span> <span>Trending</span> 
+    </button>
+    <button class="flex items-center gap-1 px-4 py-2 rounded-md hover:bg-gray-100 transition-colors mr-2">
+      <span class="material-symbols-outlined">new_releases</span> <span>Latest</span> 
+    </button>
+    <button class="flex items-center gap-1 px-4 py-2 rounded-md hover:bg-gray-100 transition-colors mr-2"> 
+      <span class="material-symbols-outlined">help</span> <span>Questions</span> 
+    </button>
+    <button class="flex items-center gap-1 px-4 py-2 rounded-md hover:bg-gray-100 transition-colors mr-2"> 
+      <span class="material-symbols-outlined">menu_book</span> <span>Posts</span> 
+    </button>
+    <button class="flex items-center gap-1 px-4 py-2 rounded-md hover:bg-gray-100 transition-colors"> 
+      <span class="material-symbols-outlined">lightbulb</span> <span>Projects</span> 
+    </button>
+  </div>
+
+  <!-- Questions Section -->
+  {% if questions %}
+  <section class="space-y-4">
+    <h2 class="text-xl font-semibold text-gray-900 flex items-center">
+      <span class="material-symbols-outlined mr-2 text-blue-500">help</span>
+      Recent Questions
+    </h2>
+    {% for question in questions %}
+    <div class="question-card">
+      <div class="question-header">
+        <div class="creator-avatar">
+          {{ question.author.username|first|upper }}
+        </div>
+        <div class="question-meta">
+          <div class="question-author">{{ question.author.username }}</div>
+          <div class="question-date">{{ question.created_at|date:"M d, Y" }}</div>
+        </div>
+      </div>
+
+      <h3 class="question-title">
+        <a href="{% url 'question_detail' question.pk %}" class="text-blue-600 hover:text-blue-800">
+          {{ question.title }}
+        </a>
+      </h3>
+
+      <p class="question-body">
+        {{ question.body|truncatewords:30 }}
+      </p>
+
+      <div class="question-actions">
+        <button class="action-button">
+          <span class="material-symbols-outlined">thumb_up</span>
+          Like
+        </button>
+        <button class="action-button">
+          <span class="material-symbols-outlined">comment</span>
+          {{ question.replies.count }} Replies
+        </button>
+        <button class="action-button">
+          <span class="material-symbols-outlined">bookmark</span>
+          Save
+        </button>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  <!-- Posts Section -->
+  {% if posts %}
+  <section class="space-y-4">
+    <h2 class="text-xl font-semibold text-gray-900 flex items-center">
+      <span class="material-symbols-outlined mr-2 text-green-500">article</span>
+      Recent Posts
+    </h2>
+    {% for post in posts %}
+    <div class="post-card">
+      <div class="post-header">
+        <div class="creator-avatar">
+          {{ post.user.username|first|upper }}
+        </div>
+        <div class="post-meta">
+          <div class="post-author">{{ post.user.username }}</div>
+          <div class="post-date">{{ post.created_at|date:"M d, Y" }}</div>
+        </div>
+      </div>
+
+      <h3 class="post-title">{{ post.title }}</h3>
+
+      <p class="post-description">
+        {{ post.description|default:"No description available."|truncatewords:30 }}
+      </p>
+
+      {% if post.image %}
+      <div class="post-media">
+        <img src="{{ post.image.url }}" alt="Post image">
+      </div>
+      {% endif %}
+
+      <div class="post-actions">
+        <button class="action-button">
+          <span class="material-symbols-outlined">thumb_up</span>
+          Like
+        </button>
+        <button class="action-button">
+          <span class="material-symbols-outlined">comment</span>
+          Comment
+        </button>
+        <button class="action-button">
+          <span class="material-symbols-outlined">bookmark</span>
+          Save
+        </button>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  <!-- Projects Section -->
+  {% if projects %}
+  <section class="space-y-4">
+    <h2 class="text-xl font-semibold text-gray-900 flex items-center">
+      <span class="material-symbols-outlined mr-2 text-purple-500">lightbulb</span>
+      Recent Projects
+    </h2>
+    {% for project in projects %}
+    <div class="project-card">
+      <div class="project-header">
+        <div class="creator-avatar">
+          {{ project.user.username|first|upper }}
+        </div>
+        <div class="project-meta">
+          <div class="project-author">{{ project.user.username }}</div>
+          <div class="project-date">{{ project.created_at|date:"M d, Y" }}</div>
+        </div>
+      </div>
+
+      <h3 class="project-title">{{ project.title }}</h3>
+
+      <p class="project-description">
+        {{ project.description|truncatewords:30 }}
+      </p>
+
+      {% if project.thumbnail %}
+      <div class="project-media">
+        <img src="{{ project.thumbnail.url }}" alt="Project thumbnail">
+      </div>
+      {% endif %}
+
+      {% if project.video %}
+      <div class="project-media">
+        <video controls class="w-full rounded-lg">
+          <source src="{{ project.video.url }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      {% endif %}
+
+      <div class="project-actions">
+        <button class="action-button">
+          <span class="material-symbols-outlined">thumb_up</span>
+          Like
+        </button>
+        <button class="action-button">
+          <span class="material-symbols-outlined">comment</span>
+          Comment
+        </button>
+        <button class="action-button">
+          <span class="material-symbols-outlined">bookmark</span>
+          Save
+        </button>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  <!-- Empty State -->
+  {% if not questions and not posts and not projects %}
+  <div class="text-center py-12">
+    <span class="material-symbols-outlined text-6xl text-gray-300">inbox</span>
+    <h3 class="mt-4 text-lg font-medium text-gray-900">No content yet</h3>
+    <p class="mt-2 text-gray-500">Be the first to share something with the community!</p>
+    <div class="mt-6 space-x-4">
+      <a href="{% url 'Add a question' %}" class="btn btn-primary">Ask a Question</a>
+      <a href="{% url 'posts' %}" class="btn btn-outline">Create Post</a>
+      <a href="{% url 'project_videos' %}" class="btn btn-outline">Share Project</a>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

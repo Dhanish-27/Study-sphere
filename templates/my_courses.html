@@ -1,0 +1,38 @@
+{% extends 'base_new.html' %}
+
+{% block content %}
+<div class="bg-white rounded-lg shadow-sm p-6">
+  <h1 class="text-2xl font-bold mb-6">Currently Learning Courses</h1>
+  {% if courses %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for course in courses %}
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+          <div class="h-48 bg-gradient-to-r from-blue-500 to-primary-600 relative">
+            <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+              <span class="material-symbols-outlined text-white text-4xl">school</span>
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold text-lg mb-2">{{ course.title }}</h3>
+            <p class="text-gray-600 text-sm mb-3">{{ course.description|truncatechars:100 }}</p>
+            <div class="flex items-center justify-between text-xs text-gray-500">
+              <span>{{ course.progress|default:"0" }}% Complete</span>
+              <span class="material-symbols-outlined text-sm">play_circle</span>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="text-center py-12">
+      <span class="material-symbols-outlined text-gray-400 text-6xl mb-4">school</span>
+      <h3 class="text-xl font-semibold text-gray-600 mb-2">No courses enrolled yet</h3>
+      <p class="text-gray-500">Start learning new skills! Browse available courses and enroll today.</p>
+      <a href="{% url 'add_language' %}" class="inline-flex items-center mt-4 px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors">
+        <span class="material-symbols-outlined mr-2">explore</span>
+        Browse Courses
+      </a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

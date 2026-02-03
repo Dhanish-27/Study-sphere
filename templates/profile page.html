@@ -1,190 +1,281 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Webcrumbs Plugin</title>
-  <style>
-    @import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
-    @import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
-    @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined);
-  </style>
-</head>
-
-<body>
-  <div id="webcrumbs">
-    <div class="bg-gray-900 text-white min-h-screen p-4">
-      <div class="max-w-4xl mx-auto bg-gray-800 rounded-lg overflow-hidden shadow-lg mb-6">
-        <div class="h-40 bg-gradient-to-r from-orange-500 to-red-500 relative"> <button
-            class="absolute top-4 right-4 bg-gray-900 bg-opacity-50 p-2 rounded-full hover:bg-gray-900 transition duration-300">
-            <span class="material-symbols-outlined">edit</span> </button> </div>
-        <div class="flex flex-col md:flex-row p-4 relative">
-          <div class="absolute -top-16 left-4 md:left-6 border-4 border-gray-800 rounded-full"> <img
-              src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w3MzkyNDZ8MHwxfHNlYXJjaHwxfHxwcm9maWxlJTIwYXZhdGFyfGVufDB8fHx8MTc1NDg1NTMwMnww&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080"
-              alt="Profile Picture" class="w-32 h-32 rounded-full object-cover hover:opacity-90 transition duration-300"
-              keywords="profile avatar, user profile, reddit profile" /> </div>
-          <div class="mt-20 md:mt-0 md:ml-40">
-            <div class="flex flex-col md:flex-row md:items-center justify-between">
-              <div>
-                <h1 class="text-2xl font-bold">u/educational_expert</h1>
-                <p class="text-gray-400 text-sm">Member since June 2021 • Educational Content Creator</p>
-              </div>
-              <div class="flex space-x-3 mt-4 md:mt-0"> <button
-                  class="bg-primary-600 text-white px-4 py-2 rounded-full font-medium hover:bg-primary-700 transition duration-300">
-                  Follow </button> <button
-                  class="bg-gray-700 p-2 rounded-full hover:bg-gray-600 transition duration-300"> <span
-                    class="material-symbols-outlined">notifications</span> </button> <button
-                  class="bg-gray-700 p-2 rounded-full hover:bg-gray-600 transition duration-300"> <span
-                    class="material-symbols-outlined">more_horiz</span> </button> </div>
-            </div>
-            <p class="mt-3 text-gray-300"> Passionate educator helping students understand complex topics through
-              interactive content. Specializing in computer science, mathematics, and engineering. </p>
-          </div>
-        </div>
-      </div>
-      <div class="max-w-4xl mx-auto mb-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div
-            class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-2px] transition duration-300">
-            <div class="flex items-center mb-2"> <span
-                class="material-symbols-outlined text-primary-500 mr-2">post_add</span>
-              <h3 class="text-lg font-semibold">Projects</h3>
-            </div>
-            <p class="text-3xl font-bold text-primary-400">146</p>
-            <p class="text-gray-400 text-sm mt-1">Educational resources created</p>
-          </div>
-          <div
-            class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-2px] transition duration-300">
-            <div class="flex items-center mb-2"> <span
-                class="material-symbols-outlined text-yellow-500 mr-2">emoji_events</span>
-              <h3 class="text-lg font-semibold">Badges</h3>
-            </div>
-            <p class="text-3xl font-bold text-yellow-400">23</p>
-            <p class="text-gray-400 text-sm mt-1">Achievement badges earned</p>
-          </div>
-          <div
-            class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-2px] transition duration-300">
-            <div class="flex items-center mb-2"> <span class="material-symbols-outlined text-blue-500 mr-2">help</span>
-              <h3 class="text-lg font-semibold">Questions</h3>
-            </div>
-            <p class="text-3xl font-bold text-blue-400">89</p>
-            <p class="text-gray-400 text-sm mt-1">Questions asked in forums</p>
-          </div>
-          <div
-            class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-2px] transition duration-300">
-            <div class="flex items-center mb-2"> <span
-                class="material-symbols-outlined text-green-500 mr-2">comment</span>
-              <h3 class="text-lg font-semibold">Replies</h3>
-            </div>
-            <p class="text-3xl font-bold text-green-400">578</p>
-            <p class="text-gray-400 text-sm mt-1">Helpful responses to others</p>
-          </div>
-        </div>
-      </div>
-      <div class="max-w-4xl mx-auto">
-        <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-          <div class="border-b border-gray-700">
-            <nav class="flex"> <button class="px-6 py-3 font-medium text-primary-400 border-b-2 border-primary-500">
-                Projects </button> <button
-                class="px-6 py-3 font-medium text-gray-400 hover:text-gray-200 transition duration-300"> Videos
-              </button> <button class="px-6 py-3 font-medium text-gray-400 hover:text-gray-200 transition duration-300">
-                Questions </button> <button
-                class="px-6 py-3 font-medium text-gray-400 hover:text-gray-200 transition duration-300"> Comments
-              </button> </nav>
-          </div>
-          <div class="p-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div
-                class="bg-gray-700 rounded-lg overflow-hidden shadow-md hover:shadow-lg hover:translate-y-[-2px] transition duration-300">
-                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97" alt="Coding Project"
-                  class="w-full h-40 object-cover" keywords="coding, programming, computer science, education" />
-                <div class="p-4">
-                  <div class="flex justify-between items-center mb-2"> <span
-                      class="text-xs font-medium px-2 py-1 rounded-full bg-primary-900 text-primary-300">Programming</span>
-                    <span class="text-gray-400 text-xs">2 days ago</span> </div>
-                  <h3 class="font-bold mb-2">Introduction to Data Structures</h3>
-                  <p class="text-gray-400 text-sm mb-3">Learn the fundamentals of data structures with practical
-                    examples in Python.</p>
-                  <div class="flex justify-between items-center">
-                    <div class="flex items-center"> <span
-                        class="material-symbols-outlined text-gray-400 mr-1 text-sm">thumb_up</span> <span
-                        class="text-gray-400 text-sm">423</span> </div>
-                    <div class="flex items-center"> <span
-                        class="material-symbols-outlined text-gray-400 mr-1 text-sm">comment</span> <span
-                        class="text-gray-400 text-sm">56</span> </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="bg-gray-700 rounded-lg overflow-hidden shadow-md hover:shadow-lg hover:translate-y-[-2px] transition duration-300">
-                <div class="relative"> <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71"
-                    alt="Math Project" class="w-full h-40 object-cover"
-                    keywords="mathematics, algebra, education, learning" />
-                  <div class="absolute top-2 right-2 bg-gray-900 bg-opacity-70 rounded-full p-1"> <span
-                      class="material-symbols-outlined text-yellow-500">bookmark</span> </div>
-                </div>
-                <div class="p-4">
-                  <div class="flex justify-between items-center mb-2"> <span
-                      class="text-xs font-medium px-2 py-1 rounded-full bg-blue-900 text-blue-300">Mathematics</span>
-                    <span class="text-gray-400 text-xs">1 week ago</span> </div>
-                  <h3 class="font-bold mb-2">Advanced Calculus Made Easy</h3>
-                  <p class="text-gray-400 text-sm mb-3">Step-by-step approach to understanding complex calculus
-                    problems.</p>
-                  <div class="flex justify-between items-center">
-                    <div class="flex items-center"> <span
-                        class="material-symbols-outlined text-gray-400 mr-1 text-sm">thumb_up</span> <span
-                        class="text-gray-400 text-sm">876</span> </div>
-                    <div class="flex items-center"> <span
-                        class="material-symbols-outlined text-gray-400 mr-1 text-sm">comment</span> <span
-                        class="text-gray-400 text-sm">134</span> </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="bg-gray-700 rounded-lg overflow-hidden shadow-md hover:shadow-lg hover:translate-y-[-2px] transition duration-300">
-                <div class="relative">
-                  <div class="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50"> <span
-                      class="material-symbols-outlined text-4xl">play_circle</span> </div> <img
-                    src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3" alt="Video Tutorial"
-                    class="w-full h-40 object-cover" keywords="video tutorial, education, online learning" />
-                </div>
-                <div class="p-4">
-                  <div class="flex justify-between items-center mb-2"> <span
-                      class="text-xs font-medium px-2 py-1 rounded-full bg-green-900 text-green-300">Video Series</span>
-                    <span class="text-gray-400 text-xs">3 weeks ago</span> </div>
-                  <h3 class="font-bold mb-2">Machine Learning Fundamentals</h3>
-                  <p class="text-gray-400 text-sm mb-3">Comprehensive tutorial on ML algorithms and practical
-                    applications.</p>
-                  <div class="flex justify-between items-center">
-                    <div class="flex items-center"> <span
-                        class="material-symbols-outlined text-gray-400 mr-1 text-sm">thumb_up</span> <span
-                        class="text-gray-400 text-sm">1.2k</span> </div>
-                    <div class="flex items-center"> <span
-                        class="material-symbols-outlined text-gray-400 mr-1 text-sm">comment</span> <span
-                        class="text-gray-400 text-sm">78</span> </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="mt-6 text-center"> <button
-                class="px-6 py-2 bg-gray-700 rounded-full font-medium hover:bg-gray-600 transition duration-300 flex items-center mx-auto">
-                <span>Load More</span> <span class="material-symbols-outlined ml-2">expand_more</span> </button> </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <title>u/{{ profile.user.username }} - EduHub Profile</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <script>
     tailwind.config = {
-      content: ["./src/**/*.{html,js}"],
-      theme: { "name": "Bluewave", "fontFamily": { "sans": ["Open Sans", "ui-sans-serif", "system-ui", "sans-serif", "\"Apple Color Emoji\"", "\"Segoe UI Emoji\"", "\"Segoe UI Symbol\"", "\"Noto Color Emoji\""] }, "extend": { "fontFamily": { "title": ["Lato", "ui-sans-serif", "system-ui", "sans-serif", "\"Apple Color Emoji\"", "\"Segoe UI Emoji\"", "\"Segoe UI Symbol\"", "\"Noto Color Emoji\""], "body": ["Open Sans", "ui-sans-serif", "system-ui", "sans-serif", "\"Apple Color Emoji\"", "\"Segoe UI Emoji\"", "\"Segoe UI Symbol\"", "\"Noto Color Emoji\""] }, "colors": { "neutral": { "50": "#f7f7f7", "100": "#eeeeee", "200": "#e0e0e0", "300": "#cacaca", "400": "#b1b1b1", "500": "#999999", "600": "#7f7f7f", "700": "#676767", "800": "#545454", "900": "#464646", "950": "#282828" }, "primary": { "50": "#f3f1ff", "100": "#e9e5ff", "200": "#d5cfff", "300": "#b7a9ff", "400": "#9478ff", "500": "#7341ff", "600": "#631bff", "700": "#611bf8", "800": "#4607d0", "900": "#3c08aa", "950": "#220174", "DEFAULT": "#611bf8" } } }, "fontSize": { "xs": ["12px", { "lineHeight": "19.200000000000003px" }], "sm": ["14px", { "lineHeight": "21px" }], "base": ["16px", { "lineHeight": "25.6px" }], "lg": ["18px", { "lineHeight": "27px" }], "xl": ["20px", { "lineHeight": "28px" }], "2xl": ["24px", { "lineHeight": "31.200000000000003px" }], "3xl": ["30px", { "lineHeight": "36px" }], "4xl": ["36px", { "lineHeight": "41.4px" }], "5xl": ["48px", { "lineHeight": "52.800000000000004px" }], "6xl": ["60px", { "lineHeight": "66px" }], "7xl": ["72px", { "lineHeight": "75.60000000000001px" }], "8xl": ["96px", { "lineHeight": "100.80000000000001px" }], "9xl": ["128px", { "lineHeight": "134.4px" }] }, "borderRadius": { "none": "0px", "sm": "6px", "DEFAULT": "12px", "md": "18px", "lg": "24px", "xl": "36px", "2xl": "48px", "3xl": "72px", "full": "9999px" }, "spacing": { "0": "0px", "1": "4px", "2": "8px", "3": "12px", "4": "16px", "5": "20px", "6": "24px", "7": "28px", "8": "32px", "9": "36px", "10": "40px", "11": "44px", "12": "48px", "14": "56px", "16": "64px", "20": "80px", "24": "96px", "28": "112px", "32": "128px", "36": "144px", "40": "160px", "44": "176px", "48": "192px", "52": "208px", "56": "224px", "60": "240px", "64": "256px", "72": "288px", "80": "320px", "96": "384px", "px": "1px", "0.5": "2px", "1.5": "6px", "2.5": "10px", "3.5": "14px" } },
-      plugins: [],
-      important: '#webcrumbs'
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Open Sans", "ui-sans-serif", "system-ui"],
+            title: ["Lato", "sans-serif"],
+          },
+          colors: {
+            neutral: {
+              50: "#f7f7f7", 100: "#eeeeee", 200: "#e0e0e0", 300: "#cacaca",
+              400: "#b1b1b1", 500: "#999999", 600: "#7f7f7f", 700: "#676767",
+              800: "#545454", 900: "#464646", 950: "#282828"
+            },
+            primary: {
+              50: "#f3f1ff", 100: "#e9e5ff", 200: "#d5cfff", 300: "#b7a9ff",
+              400: "#9478ff", 500: "#7341ff", 600: "#631bff", 700: "#611bf8",
+              800: "#4607d0", 900: "#3c08aa", 950: "#220174", DEFAULT: "#611bf8"
+            }
+          }
+        }
+      }
     };
   </script>
-</body>
+</head>
+<body class="bg-neutral-50 min-h-screen font-sans">
+  <div id="webcrumbs">
+    <!-- Independent Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+          <a href="/" class="text-2xl font-bold text-primary-600">EduHub</a>
+          <div class="hidden md:block relative w-64"> 
+            <input type="text" placeholder="Search for anything..."
+              class="w-full pl-10 pr-4 py-2 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary-500" />
+            <span class="material-symbols-outlined absolute left-3 top-2.5 text-neutral-400">search</span>
+          </div>
+        </div>
+        <div class="flex items-center space-x-3"> 
+          {% if user.is_authenticated %}
+            <button class="p-2 rounded-full hover:bg-neutral-100 transition-colors"> 
+              <span class="material-symbols-outlined">notifications</span> 
+            </button> 
+            <a href="{% url 'profile_page' %}" class="flex items-center space-x-2 p-2 rounded-full hover:bg-neutral-100 transition-colors">
+              <div class="h-8 w-8 rounded-full bg-primary-200 flex items-center justify-center text-primary-700 font-bold">
+                {{ user.username|first|upper }}
+              </div>
+              <span class="hidden md:block font-medium">{{ user.username }}</span>
+            </a>
+            <a href="{% url 'logout_user' %}" class="text-neutral-600 hover:text-red-600">
+              <span class="material-symbols-outlined">logout</span>
+            </a>
+          {% else %}
+            <a href="{% url 'login_user' %}" class="px-4 py-2 text-primary-600 font-bold">Login</a>
+            <a href="{% url 'register_user' %}" class="px-4 py-2 bg-primary-600 text-white rounded-lg font-bold">Sign Up</a>
+          {% endif %}
+        </div>
+      </div>
+    </header>
 
+    <main class="container mx-auto px-4 py-8">
+      <div class="max-w-4xl mx-auto space-y-6">
+        <!-- Profile Header Card -->
+        <div class="bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden">
+          <div class="h-40 bg-gradient-to-r from-primary-600 to-blue-600 relative">
+            <a href="{% url 'professional_details' %}" class="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full hover:bg-white/30 transition-colors text-white">
+              <span class="material-symbols-outlined text-[20px]">edit</span>
+            </a>
+          </div>
+          
+          <div class="px-8 pb-8 relative">
+            <div class="absolute -top-16 left-8 border-4 border-white rounded-full bg-white shadow-md">
+              {% if profile.profile_photo %}
+              <img src="{{ profile.profile_photo.url }}" alt="Profile" class="w-32 h-32 rounded-full object-cover" />
+              {% else %}
+              <div class="w-32 h-32 rounded-full bg-primary-100 flex items-center justify-center text-primary-700 text-4xl font-bold">
+                {{ profile.user.username|first|upper }}
+              </div>
+              {% endif %}
+            </div>
+            
+            <div class="mt-20 flex flex-col md:flex-row md:items-start justify-between gap-6">
+              <div class="flex-1">
+                <h1 class="text-3xl font-bold text-neutral-900">u/{{ profile.user.username }}</h1>
+                <p class="text-neutral-500 font-medium mt-1">
+                  {{ profile.job_title|default:"Learner" }} • Member since {{ profile.user.date_joined|date:"F Y" }}
+                </p>
+                <p class="mt-4 text-neutral-700 max-w-2xl leading-relaxed text-lg">
+                  {{ profile.bio|default:"No bio available yet. Share something about yourself!" }}
+                </p>
+              </div>
+              
+              <div class="flex items-center gap-3">
+                <button class="bg-primary-600 text-white px-8 py-2.5 rounded-full font-bold hover:bg-primary-700 transition-shadow shadow-lg shadow-primary-200">
+                  Follow
+                </button>
+                <button class="p-2.5 rounded-full border border-neutral-200 hover:bg-neutral-50 text-neutral-600 transition-colors">
+                  <span class="material-symbols-outlined">notifications</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="bg-white p-6 rounded-2xl shadow-sm border border-neutral-200 text-center group hover:border-primary-300 transition-all">
+            <span class="material-symbols-outlined text-primary-500 mb-2 text-3xl">lightbulb</span>
+            <p class="text-3xl font-bold text-neutral-900">{{ num_projects }}</p>
+            <p class="text-xs text-neutral-400 uppercase font-black tracking-widest mt-1">Projects</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl shadow-sm border border-neutral-200 text-center group hover:border-yellow-300 transition-all">
+            <span class="material-symbols-outlined text-yellow-500 mb-2 text-3xl">school</span>
+            <p class="text-3xl font-bold text-neutral-900">{{ certifications }}</p>
+            <p class="text-xs text-neutral-400 uppercase font-black tracking-widest mt-1">Certs</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl shadow-sm border border-neutral-200 text-center group hover:border-blue-300 transition-all">
+            <span class="material-symbols-outlined text-blue-500 mb-2 text-3xl">help</span>
+            <p class="text-3xl font-bold text-neutral-900">{{ num_questions }}</p>
+            <p class="text-xs text-neutral-400 uppercase font-black tracking-widest mt-1">Questions</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl shadow-sm border border-neutral-200 text-center group hover:border-green-300 transition-all">
+            <span class="material-symbols-outlined text-green-500 mb-2 text-3xl">article</span>
+            <p class="text-3xl font-bold text-neutral-900">{{ num_posts }}</p>
+            <p class="text-xs text-neutral-400 uppercase font-black tracking-widest mt-1">Posts</p>
+          </div>
+        </div>
+
+        <!-- Content Tabs -->
+        <div class="bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden">
+          <div class="border-b border-neutral-100 bg-neutral-50/30">
+            <nav class="flex px-4">
+              <button onclick="switchTab('projects')" id="btn-projects" class="tab-btn px-6 py-5 text-sm font-black uppercase tracking-widest text-primary-600 border-b-2 border-primary-600 transition-all">
+                Projects
+              </button>
+              <button onclick="switchTab('questions')" id="btn-questions" class="tab-btn px-6 py-5 text-sm font-black uppercase tracking-widest text-neutral-400 border-b-2 border-transparent hover:text-neutral-600 transition-all">
+                Questions
+              </button>
+              <button onclick="switchTab('posts')" id="btn-posts" class="tab-btn px-6 py-5 text-sm font-black uppercase tracking-widest text-neutral-400 border-b-2 border-transparent hover:text-neutral-600 transition-all">
+                Posts
+              </button>
+              <button onclick="switchTab('comments')" id="btn-comments" class="tab-btn px-6 py-5 text-sm font-black uppercase tracking-widest text-neutral-400 border-b-2 border-transparent hover:text-neutral-600 transition-all">
+                Comments
+              </button>
+            </nav>
+          </div>
+
+          <div class="p-8">
+            <!-- Projects Section -->
+            <div id="section-projects" class="tab-content space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {% for project in projects %}
+                <div class="group bg-neutral-50 rounded-xl p-5 border border-neutral-100 hover:border-primary-200 hover:bg-white hover:shadow-xl transition-all">
+                  {% if project.thumbnail %}
+                  <div class="aspect-video rounded-lg overflow-hidden mb-4 bg-neutral-200">
+                    <img src="{{ project.thumbnail.url }}" alt="{{ project.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                  </div>
+                  {% else %}
+                  <div class="aspect-video rounded-lg bg-primary-50 flex items-center justify-center mb-4">
+                    <span class="material-symbols-outlined text-primary-200 text-5xl">videocam</span>
+                  </div>
+                  {% endif %}
+                  <h3 class="text-xl font-bold text-neutral-900">{{ project.title }}</h3>
+                  <p class="text-neutral-500 mt-2 text-sm line-clamp-2 leading-relaxed">{{ project.description }}</p>
+                  <div class="mt-4 pt-4 border-t border-neutral-100 flex justify-between items-center">
+                    <span class="text-xs font-bold text-neutral-400">{{ project.created_at|date:"M Y" }}</span>
+                    <button class="text-primary-600 font-bold text-sm flex items-center gap-1 hover:underline">
+                      View Project <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </button>
+                  </div>
+                </div>
+                {% empty %}
+                <div class="col-span-2 text-center py-12 bg-neutral-50 rounded-xl border-2 border-dashed border-neutral-200">
+                  <span class="material-symbols-outlined text-5xl text-neutral-300">video_library</span>
+                  <p class="text-neutral-500 mt-2 font-medium">No projects shared yet</p>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- Questions Section -->
+            <div id="section-questions" class="tab-content hidden space-y-4">
+              {% for question in questions %}
+              <div class="p-6 border border-neutral-100 rounded-xl hover:bg-neutral-50 transition-colors group">
+                <h4 class="text-xl font-bold text-neutral-900 group-hover:text-primary-600 transition-colors">
+                  <a href="{% url 'question_detail' question.pk %}">{{ question.title }}</a>
+                </h4>
+                <p class="text-neutral-500 mt-2 line-clamp-2">{{ question.body }}</p>
+                <div class="mt-4 flex items-center gap-4">
+                  <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-bold">{{ question.replies.count }} Replies</span>
+                  <span class="text-xs text-neutral-400 font-medium">{{ question.created_at|timesince }} ago</span>
+                </div>
+              </div>
+              {% empty %}
+              <div class="text-center py-12 bg-neutral-50 rounded-xl border-2 border-dashed border-neutral-200">
+                <span class="material-symbols-outlined text-5xl text-neutral-300">help_center</span>
+                <p class="text-neutral-500 mt-2 font-medium">No questions asked yet</p>
+              </div>
+              {% endfor %}
+            </div>
+
+            <!-- Posts Section -->
+            <div id="section-posts" class="tab-content hidden space-y-4">
+              {% for post in posts %}
+              <div class="flex gap-6 p-6 border border-neutral-100 rounded-xl hover:bg-neutral-50 transition-all">
+                {% if post.image %}
+                <div class="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 bg-neutral-100">
+                  <img src="{{ post.image.url }}" alt="{{ post.title }}" class="w-full h-full object-cover">
+                </div>
+                {% endif %}
+                <div class="flex-1">
+                  <h4 class="text-xl font-bold text-neutral-900">{{ post.title }}</h4>
+                  <p class="text-neutral-500 mt-2 text-sm line-clamp-2">{{ post.description }}</p>
+                  <p class="mt-4 text-xs font-bold text-neutral-400 uppercase tracking-widest">{{ post.created_at|date:"d M Y" }}</p>
+                </div>
+              </div>
+              {% empty %}
+              <div class="text-center py-12 bg-neutral-50 rounded-xl border-2 border-dashed border-neutral-200">
+                <span class="material-symbols-outlined text-5xl text-neutral-300">article</span>
+                <p class="text-neutral-500 mt-2 font-medium">No posts published yet</p>
+              </div>
+              {% endfor %}
+            </div>
+
+            <!-- Comments Section -->
+            <div id="section-comments" class="tab-content hidden space-y-4">
+              {% for reply in replies %}
+              <div class="p-6 bg-neutral-50 rounded-xl border-l-4 border-primary-500">
+                <p class="text-neutral-800 leading-relaxed font-medium">"{{ reply.body }}"</p>
+                <div class="mt-3 flex items-center justify-between">
+                  <span class="text-xs text-neutral-500">Replied to <span class="font-bold text-neutral-700">{{ reply.question.title }}</span></span>
+                  <span class="text-xs text-neutral-400">{{ reply.created_at|timesince }} ago</span>
+                </div>
+              </div>
+              {% empty %}
+              <div class="text-center py-12 bg-neutral-50 rounded-xl border-2 border-dashed border-neutral-200">
+                <span class="material-symbols-outlined text-5xl text-neutral-300">forum</span>
+                <p class="text-neutral-500 mt-2 font-medium">No comments yet</p>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function switchTab(tabName) {
+      // Hide all contents
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      // Show selected
+      document.getElementById('section-' + tabName).classList.remove('hidden');
+      
+      // Update buttons
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('text-primary-600', 'border-primary-600');
+        btn.classList.add('text-neutral-400', 'border-transparent');
+      });
+      document.getElementById('btn-' + tabName).classList.add('text-primary-600', 'border-primary-600');
+      document.getElementById('btn-' + tabName).classList.remove('text-neutral-400', 'border-transparent');
+    }
+  </script>
+  <style>
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  </style>
+</body>
 </html>

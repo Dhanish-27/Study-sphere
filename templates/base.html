@@ -1,15 +1,16 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Webcrumbs Plugin</title>
-  <style>
-    @import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
-    @import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
-    @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined);
-  </style>
+  <title>{% block title %}EduHub - Learning Platform{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
@@ -20,28 +21,33 @@
           <div class="container mx-auto px-4 py-3 flex items-center justify-between">
             <div class="flex items-center space-x-4">
               <h1 class="text-2xl font-bold text-primary-600">EduHub</h1>
-              <div class="hidden md:block relative w-64"> <input type="text" placeholder="Search for anything..."
+              <div class="hidden md:block relative w-64"> 
+                <input type="text" id="search-input" placeholder="Search for anything..."
                   class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" />
                 <span class="material-symbols-outlined absolute left-3 top-2.5 text-gray-400">search</span>
               </div>
             </div>
-            <div class="flex items-center space-x-3"> <button
-                class="p-2 rounded-full hover:bg-gray-100 transition-colors"> <span
-                  class="material-symbols-outlined">notifications</span> </button> <button
-                class="p-2 rounded-full hover:bg-gray-100 transition-colors"> <span
-                  class="material-symbols-outlined">mail</span> </button> <button
-                class="p-2 rounded-full hover:bg-gray-100 transition-colors"> <span
-                  class="material-symbols-outlined">settings</span> </button>
-              <div
-                class="h-8 w-8 rounded-full bg-primary-200 flex items-center justify-center text-primary-700 font-medium cursor-pointer hover:ring-2 hover:ring-primary-300 transition-all">
-                JD </div>
-            </div>
-          </div>
-          <main class="flex-1 container mx-auto px-4 py-6 flex flex-col md:flex-row gap-6">
-            <aside class="hidden md:block w-full md:w-64 space-y-6 self-start sticky top-20">
-              <div class="bg-white rounded-lg shadow-sm p-4">
-                <h2 class="font-semibold text-lg mb-3">Domains</h2>
-                <ul class="space-y-2">
+            <div class="flex items-center space-x-3"> 
+              {% if user.is_authenticated %}
+                <button class="p-2 rounded-full hover:bg-gray-100 transition-colors"> 
+                  <span class="material-symbols-outlined">notifications</span> 
+                </button> 
+                <button class="p-2 rounded-full hover:bg-gray-100 transition-colors"> 
+                  <span class="material-symbols-outlined">mail</span> 
+                </button> 
+                <a href="{% url 'profile_page' %}" class="flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                  <div class="h-8 w-8 rounded-full bg-primary-200 flex items-center justify-center text-primary-700 font-medium">
+                    {{ user.username|first|upper }}
+                  </div>
+                  <span class="hidden md:block">{{ user.username }}</span>
+                </a>
+                <a href="{% url 'logout_user' %}" class="text-gray-600 hover:text-gray-900">
+                  <span class="material-symbols-outlined">logout</span>
+                </a>
+              {% else %}
+                <a href="{% url 'login_user' %}" class="btn btn-primary">Login</a>
+                <a href="{% url 'register_user' %}" class="btn btn-outline">Sign Up</a>
+              {% endif %}
                   <li class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100 transition-colors cursor-pointer">
                     <span class="material-symbols-outlined mr-3 text-blue-500">functions</span> <span>Mathematics</span>
                   </li>
@@ -65,10 +71,24 @@
                 <h2 class="font-semibold text-lg mb-3">My Content</h2>
                 <ul class="space-y-2">
                   <li class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100 transition-colors cursor-pointer">
-                    <span class="material-symbols-outlined mr-3">help</span> <span>My Questions</span>
+                    <a href="{% url 'profile_page' %}" class="flex items-center w-full">
+                      <span class="material-symbols-outlined mr-3">person</span> <span>Profile</span>
+                    </a>
                   </li>
                   <li class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100 transition-colors cursor-pointer">
-                    <span class="material-symbols-outlined mr-3">lightbulb</span> <span>My Projects</span>
+                    <a href="{% url 'my_projects' %}" class="flex items-center w-full">
+                      <span class="material-symbols-outlined mr-3">lightbulb</span> <span>My Projects</span>
+                    </a>
+                  </li>
+                  <li class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100 transition-colors cursor-pointer">
+                    <a href="{% url 'my_posts' %}" class="flex items-center w-full">
+                      <span class="material-symbols-outlined mr-3">menu_book</span> <span>My Posts</span>
+                    </a>
+                  </li>
+                  <li class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100 transition-colors cursor-pointer">
+                    <a href="{% url 'my_courses' %}" class="flex items-center w-full">
+                      <span class="material-symbols-outlined mr-3">school</span> <span>Currently Learning Courses</span>
+                    </a>
                   </li>
                   <li class="flex items-center px-3 py-2 rounded-md hover:bg-gray-100 transition-colors cursor-pointer">
                     <span class="material-symbols-outlined mr-3">bookmark</span> <span>Saved</span>
@@ -107,19 +127,8 @@
                     class="material-symbols-outlined">lightbulb</span> <span>Projects</span> </button>
               </div>
               {% block content %}
-
-
-
-
-
               {% endblock %}
               <!-- The below is the one that needs to be extended by other posts, questions and project's pages  -->
-
-
-              
-
-
-
             </div>
             <aside class="hidden lg:block w-80 space-y-6 self-start sticky top-20">
               <div class="bg-white rounded-lg shadow-sm p-4">

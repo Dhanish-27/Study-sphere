@@ -21,6 +21,12 @@ urlpatterns = [
     path('add_video/', views.add_video, name='add_video'),
     # Professional details
     path('professional_details_form/', views.professional_details, name='professional_details'),
+    # Profile page
+    path('profile/', views.profile_page, name='profile_page'),
+    # My Content pages
+    path('my-projects/', views.my_projects, name='my_projects'),
+    path('my-posts/', views.my_posts, name='my_posts'),
+    path('my-courses/', views.my_courses, name='my_courses'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
